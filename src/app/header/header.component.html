@@ -1,0 +1,29 @@
+<header>
+  <div>
+    <div>
+      <a href="/"> <span>To</span>-Do</a>
+    </div>
+    <div id="header-search-div">
+      <form>
+        <input type="search" placeholder="Search Your Task Here..." />
+        <button class="button-icon" type="submit">
+          <ng-icon name="mynaSearch" />
+        </button>
+      </form>
+    </div>
+    <div id="header-date-div">
+      <div id="header-cal-not-div">
+        <button class="button-icon">
+          <ng-icon name="mynaBell" />
+        </button>
+        <button class="button-icon">
+          <ng-icon name="mynaCalendar" />
+        </button>
+      </div>
+      <div id="header-current-date-div">
+        <p>{{ dayName }}</p>
+        <p>{{ formattedDate }}</p>
+      </div>
+    </div>
+  </div>
+</header>

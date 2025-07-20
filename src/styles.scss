@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./styles/variables";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.button-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 4px;
+  background-color: $primary-color;
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 7px 2px #00000011;
+  transition: 0.5s;
+}
+
+.button-icon:hover {
+  background-color: $primary-color-hover;
+}

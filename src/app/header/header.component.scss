@@ -1,0 +1,68 @@
+@import "../../styles/variables";
+@import "../../styles.scss";
+
+header {
+  height: 75px;
+  background-color: $secondary-color;
+  box-shadow: 0 2px 6px 1px #00000011;
+}
+
+header > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 30px;
+  height: 100%;
+}
+
+a {
+  font-size: 26px;
+  text-decoration: none;
+  color: $text-primary-color;
+  font-weight: 700;
+  padding-left: 30px;
+  span {
+    color: $text-secondary-color;
+  }
+}
+
+#header-search-div {
+  flex-grow: 1;
+  margin: 0 9%;
+}
+
+form {
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 7px 2px #00000011;
+
+  input {
+    background-color: transparent;
+    border: 0;
+    flex-grow: 1;
+    padding: 6px 10px;
+  }
+}
+
+#header-date-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  #header-cal-not-div {
+    display: flex;
+    gap: 10px;
+  }
+
+  #header-current-date-div {
+    text-align: center;
+
+    p:last-child {
+      color: $sea-blue;
+    }
+  }
+}
