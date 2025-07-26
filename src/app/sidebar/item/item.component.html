@@ -1,0 +1,6 @@
+<li>
+  <a [class.active-item]="path === item.href" [href]="item.href">
+    <ng-icon id="list-icon" [name]="item.icon" />
+    <span> {{ item.title }}</span>
+  </a>
+</li>

@@ -1,0 +1,22 @@
+<aside>
+  <div>
+    <div id="profile-div">
+      <img src="/images.jpeg" alt="Profile" />
+      <div>
+        <h5>John Doe</h5>
+        <p>JohnDoe&#x40;gmail.com</p>
+      </div>
+    </div>
+    <div id="list-div">
+      <ul>
+        @for(item of sidebarItems; track item.id) {
+        <app-item [item]="item" />
+        }
+      </ul>
+      <button>
+        <ng-icon id="item-icon" name="mynaLogoutSolid" />
+        <span>Logout </span>
+      </button>
+    </div>
+  </div>
+</aside>
