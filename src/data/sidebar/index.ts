@@ -4,7 +4,7 @@ export const SIDEBAR_ITEMS: SideBarItem[] = [
   {
     id: '1',
     title: 'Dashboard',
-    href: '/',
+    href: '/dashboard',
     icon: 'mynaGridSolid',
   },
   {

@@ -9,11 +9,11 @@ import {
   mynaListSolid,
   mynaQuestionCircleSolid,
 } from '@ng-icons/mynaui/solid';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-item',
-  imports: [NgIcon],
+  imports: [NgIcon, RouterLink, RouterLinkActive],
   templateUrl: './item.component.html',
   styleUrl: './item.component.scss',
   viewProviders: [
@@ -32,6 +32,8 @@ export class ItemComponent {
   path: string;
 
   constructor(private router: Router) {
-    this.path = this.router.url.split('?')[0];
+    this.path = this.router.url;
+
+    console.log('Path: ', this.path);
   }
 }

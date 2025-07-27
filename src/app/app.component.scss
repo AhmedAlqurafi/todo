@@ -1,6 +1,7 @@
 div {
   min-height: 100vh;
   display: flex;
+
   flex-direction: column;
 }
 main {
@@ -14,4 +15,7 @@ main {
   width: 25%;
 }
 section {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: blue;
 }
