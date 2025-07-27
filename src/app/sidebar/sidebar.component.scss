@@ -2,7 +2,7 @@
 
 aside {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: $primary-color;
   border-top-right-radius: 8px;
   position: relative;
@@ -12,13 +12,14 @@ aside {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
     padding: 0px 30px;
-    position: absolute;
-    top: -42px;
-    left: 50%;
-    transform: translate(-50%, 0%);
+  }
+
+  & > div > div {
+    width: 100%;
+    transform: translate(0%, -8%);
   }
 }
 
@@ -68,6 +69,7 @@ aside {
 }
 
 button {
+  justify-self: flex-start;
   color: #fff;
   background-color: transparent;
   font-size: 1rem;
@@ -80,6 +82,7 @@ button {
   border-radius: 9px;
   margin-bottom: 5px;
   transition: 0.3s;
+  width: 100%;
   text-decoration: none;
   cursor: pointer;
 
