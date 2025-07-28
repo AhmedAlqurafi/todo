@@ -1,1 +1,12 @@
-<p>dashboard works!</p>
+<div id="dashboard-wrapper">
+  <h2>Welcome back, John</h2>
+  <div id="dashboard-main-section">
+    <div id="dashboard-todo">
+      @for(todo of todoTasks; track todo.id) {
+      <app-todo-card [todo]="todo" />
+      }
+    </div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

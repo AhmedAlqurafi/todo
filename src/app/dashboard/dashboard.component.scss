@@ -1,0 +1,22 @@
+#dashboard-wrapper {
+  width: 100%;
+  min-height: 100%;
+}
+
+#dashboard-main-section {
+  width: 100%;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 20px;
+}
+
+#dashboard-main-section > div {
+  height: 100%;
+}
+
+#dashboard-todo {
+  box-shadow: 0 5px 9px 2px #00000022;
+  border-radius: 10px;
+  padding: 15px;
+}

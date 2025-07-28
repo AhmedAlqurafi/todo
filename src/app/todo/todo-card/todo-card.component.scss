@@ -1,0 +1,74 @@
+@import "../../../styles/variables";
+
+#todo-card-wrapper {
+  padding: 10px 15px;
+  border: 1px solid $gray-blue;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+#todo-card-main {
+  display: flex;
+}
+
+#todo-card-header {
+  padding-right: 10px;
+  h6 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+#todo-card-img {
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+#todo-card-footer {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.8rem;
+  margin-top: 10px;
+  font-weight: 500;
+
+  span {
+    text-transform: capitalize;
+    font-weight: 900;
+  }
+}
+
+.blue {
+  color: $blue;
+}
+
+.red {
+  color: $red;
+}
+
+.green {
+  color: $green;
+}
+
+.sky-blue {
+  color: $sea-blue;
+}
+
+.orange {
+  color: $orange;
+}
+.bright-orange {
+  color: $bright-orange;
+}
+.dark-red {
+  color: $dark-red;
+}
