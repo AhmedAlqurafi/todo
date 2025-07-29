@@ -7,8 +7,12 @@
       }
     </div>
     <div id="dashboard-todo-statistics">
-      <div class="dashboard-box"></div>
-      <div class="dashboard-box"></div>
+      <div class="dashboard-box-bar-charts">
+        <app-progress-bar color="green" [percentage]="84" label="Completed" />
+        <app-progress-bar color="blue" [percentage]="10" label="In Progress" />
+        <app-progress-bar color="red" [percentage]="6" label="Not Started" />
+      </div>
+      <div class="dashboard-box-completed-todo"></div>
     </div>
   </div>
 </div>

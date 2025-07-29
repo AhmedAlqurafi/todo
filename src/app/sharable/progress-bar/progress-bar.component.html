@@ -1,0 +1,20 @@
+<div class="progress-bar-wrapper">
+  <div class="progress-bar-percentage">
+    <p>
+      {{ percentage }}
+    </p>
+    <div
+      class="progress-bar"
+      [style.background]="
+        'conic-gradient(white 0% ' +
+        (100 - percentage) +
+        '%, ' +
+        color +
+        ' ' +
+        (100 - percentage) +
+        '% 100%) border-box'
+      "
+    ></div>
+  </div>
+  <div></div>
+</div>

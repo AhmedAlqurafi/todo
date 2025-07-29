@@ -1,0 +1,21 @@
+.progress-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: magenta;
+}
+
+.progress-bar-percentage {
+  position: relative;
+
+  & p {
+    position: absolute;
+  }
+  & .progress-bar {
+    border-radius: 100%;
+    border: 15px solid transparent;
+    width: 100px;
+    height: 100px;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude; /* Ensures only the border is visible */
+  }
+}
