@@ -1,0 +1,31 @@
+@import "../../../styles/variables";
+
+.card-wrapper {
+  box-shadow: 0 5px 9px 2px #00000022;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.card-wrapper:first-child {
+  margin-bottom: 15px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.6rem;
+
+  & > ng-icon {
+    color: $gray-blue;
+  }
+
+  & > h6 {
+    color: $red;
+    font-weight: normal;
+  }
+}
+
+.card-body {
+  padding: 40px 0px 20px 0px;
+}

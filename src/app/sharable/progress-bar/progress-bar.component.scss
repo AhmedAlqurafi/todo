@@ -1,21 +1,48 @@
 .progress-bar-wrapper {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  background-color: magenta;
 }
 
 .progress-bar-percentage {
   position: relative;
 
-  & p {
+  & .progress-bar-percentage-text {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
+    top: 0;
+    left: 0;
   }
+
+  & p {
+    font-size: 1.2rem;
+  }
+
   & .progress-bar {
     border-radius: 100%;
-    border: 15px solid transparent;
+    border: 12px solid transparent;
     width: 100px;
     height: 100px;
     mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
     mask-composite: exclude; /* Ensures only the border is visible */
+  }
+}
+
+.progress-bar-label {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  & > div {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
   }
 }
