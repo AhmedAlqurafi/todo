@@ -1,4 +1,4 @@
-import { SideBarItem } from '../../app/sidebar/item/item.model';
+import { SideBarItem } from '../../app/layout/dashboard-layout/sidebar/item/item.model';
 
 export const SIDEBAR_ITEMS: SideBarItem[] = [
   {
@@ -10,31 +10,31 @@ export const SIDEBAR_ITEMS: SideBarItem[] = [
   {
     id: '2',
     title: 'Vital Tasks',
-    href: '/vital-tasks',
+    href: '/dashboard/vital-tasks',
     icon: 'mynaDangerSolid',
   },
   {
     id: '3',
     title: 'My Tasks',
-    href: '/my-tasks',
+    href: '/dashboard/my-tasks',
     icon: 'mynaCalendarCheckSolid',
   },
   {
     id: '4',
     title: 'Task Categories',
-    href: '/categories',
+    href: '/dashboard/categories',
     icon: 'mynaListSolid',
   },
   {
     id: '5',
     title: 'Settings',
-    href: '/settings',
+    href: '/dashboard/settings',
     icon: 'mynaCogFourSolid',
   },
   {
     id: '6',
     title: 'Help',
-    href: '/help',
+    href: '/dashboard/help',
     icon: 'mynaQuestionCircleSolid',
   },
 ];

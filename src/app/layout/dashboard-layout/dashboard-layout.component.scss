@@ -1,0 +1,20 @@
+div {
+  min-height: 100vh;
+  display: flex;
+
+  flex-direction: column;
+}
+main {
+  margin-top: 55px;
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+}
+
+#app-sidebar {
+  width: 25%;
+}
+section {
+  flex-grow: 1;
+  padding: 0 20px 20px 20px;
+}
