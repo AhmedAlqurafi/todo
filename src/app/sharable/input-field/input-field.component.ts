@@ -11,4 +11,5 @@ export class InputFieldComponent {
   @Input({ required: true }) placeholder!: string;
   @Input() type = 'text';
   @Input({ required: true }) icon!: string;
+  @Input({ required: true }) name!: string;
 }

@@ -1,26 +1,62 @@
-<main id="register-wrapper">
-  <div id="reg-img">
-    <div>
-      <img src="signup-img.svg" alt="Sign Up image" />
-    </div>
-  </div>
-  <div>
-    <div>
-      <h1>Sign Up</h1>
-      <app-input-field icon="user" placeholder="Enter First Name" />
-      <app-input-field icon="user" placeholder="Enter Last Name" />
-      <app-input-field icon="user" placeholder="Enter Username" />
-      <app-input-field icon="user" placeholder="Enter Email" />
-      <app-input-field icon="user" placeholder="Enter Password" />
-      <app-input-field icon="user" placeholder="Confirm Password" />
+<main>
+  <div id="register-wrapper">
+    <div id="reg-img">
       <div>
-        <label>I agree to all terms</label>
-        <input type="checkbox" name="terms" />
+        <img src="signup-img.svg" alt="Sign Up image" />
       </div>
-      <app-primary-button label="Register" />
+    </div>
+    <div id="reg-form">
       <div>
-        <p>Already have an accoutn?</p>
-        <a routerLink="/auth/login">Sign in</a>
+        <h1>Sign Up</h1>
+        <app-input-field
+          icon="user"
+          placeholder="Enter First Name"
+          name="first-name"
+          icon="mynaUser"
+        />
+        <app-input-field
+          icon="user"
+          placeholder="Enter Last Name"
+          name="last-name
+          "
+          icon="mynaUser"
+        />
+        <app-input-field
+          icon="user"
+          placeholder="Enter Username"
+          name="username"
+          icon="mynaUserSolid"
+        />
+        <app-input-field
+          icon="user"
+          placeholder="Enter Email"
+          name="email"
+          icon="mynaEnvelope"
+          type="email"
+        />
+        <app-input-field
+          icon="user"
+          placeholder="Enter Password"
+          name="password"
+          icon="mynaLockSolid"
+          type="password"
+        />
+        <app-input-field
+          icon="user"
+          placeholder="Confirm Password"
+          name="confirm-password"
+          icon="mynaLockPasswordSolid"
+          type="password"
+        />
+        <div id="reg-terms">
+          <label>I agree to all terms</label>
+          <input type="checkbox" name="terms" />
+        </div>
+        <app-primary-button label="Register" />
+        <div id="reg-login">
+          <p>Already have an account?</p>
+          <a routerLink="/auth/login">Sign in</a>
+        </div>
       </div>
     </div>
   </div>

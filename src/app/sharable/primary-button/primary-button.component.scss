@@ -4,9 +4,10 @@ button {
   background-color: $primary-color;
   border: 1px solid $primary-color;
   border-radius: 5px;
-  padding: 12px;
+  padding: 10px 20px;
   color: #fff;
   transition: 0.3s;
+  font-size: 1rem;
   cursor: pointer;
 
   &:hover {
