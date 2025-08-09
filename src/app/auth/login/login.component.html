@@ -1,1 +1,36 @@
-<p>login works!</p>
+<main>
+  <div id="register-wrapper">
+    <div id="reg-img">
+      <div>
+        <img src="signin-img.svg" alt="Sign Up image" />
+      </div>
+    </div>
+    <div id="reg-form">
+      <div>
+        <h1>Sign Up</h1>
+        <app-input-field
+          icon="user"
+          placeholder="Enter First Name"
+          name="first-name"
+          icon="mynaUserSolid"
+        />
+        <app-input-field
+          icon="user"
+          placeholder="Enter Last Name"
+          name="last-name
+          "
+          icon="mynaLockSolid"
+        />
+        <div id="reg-remember-me">
+          <label>Remember Me</label>
+          <input type="checkbox" name="remember-me" />
+        </div>
+        <app-primary-button label="Login" />
+        <div id="reg-login">
+          <p>Don't have an account?</p>
+          <a routerLink="/auth/register">Create One</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
