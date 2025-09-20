@@ -43,7 +43,7 @@ main {
   align-items: center;
   padding: 25px 20px 25px 0;
 
-  & > div {
+  & form {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -63,5 +63,38 @@ main {
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+}
+
+// Input Field style
+
+#input-field-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px;
+  border-radius: 3px;
+  border: 1px solid $gray-blue;
+  box-shadow: none;
+  background-color: white;
+
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  & input {
+    width: inherit;
+    border: 0;
+  }
+
+  & input:focus {
+    outline: 0;
+  }
+
+  & ng-icon {
+    font-size: 1.2rem;
+    margin-bottom: 3px;
   }
 }

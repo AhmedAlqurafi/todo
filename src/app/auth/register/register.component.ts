@@ -1,18 +1,35 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { InputFieldComponent } from '../../sharable/input-field/input-field.component';
 import { PrimaryButtonComponent } from '../../sharable/primary-button/primary-button.component';
 import { RouterLink } from '@angular/router';
-import { provideIcons } from '@ng-icons/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   mynaLockPasswordSolid,
   mynaLockSolid,
   mynaUserSolid,
 } from '@ng-icons/mynaui/solid';
 import { mynaEnvelope, mynaUser } from '@ng-icons/mynaui/outline';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RegisterService } from './reigster.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
-  imports: [InputFieldComponent, PrimaryButtonComponent, RouterLink],
+  imports: [
+    FormsModule,
+    InputFieldComponent,
+    PrimaryButtonComponent,
+    RouterLink,
+    NgIcon,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   viewProviders: [
@@ -25,4 +42,36 @@ import { mynaEnvelope, mynaUser } from '@ng-icons/mynaui/outline';
     }),
   ],
 })
-export class RegisterComponent {}
+export class RegisterComponent implements OnInit, OnDestroy {
+  firstName = '';
+  lastName = '';
+  username = '';
+  email = '';
+  password = '';
+  confirmPassword = '';
+  private registerService = inject(RegisterService);
+  private subscribedData: any;
+
+  ngOnInit(): void {
+    this.subscribedData = this.registerService.getData();
+    console.log('From component: ', this.subscribedData);
+
+    this.registerService.getBlahData();
+  }
+
+  ngOnDestroy(): void {
+    this.subscribedData.unsubscribe();
+  }
+  onSubmit() {
+    const newUser = {
+      FirstName: this.firstName,
+      LastName: this.lastName,
+      Username: this.username,
+      Email: this.email,
+      Password: this.password,
+      ConfirmPassword: this.confirmPassword,
+    };
+
+    this.registerService.postData(newUser);
+  }
+}

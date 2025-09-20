@@ -7,52 +7,132 @@
     </div>
     <div id="reg-form">
       <div>
-        <h1>Sign Up</h1>
-        <app-input-field
-          icon="user"
-          placeholder="Enter First Name"
-          name="first-name"
-          icon="mynaUser"
-        />
-        <app-input-field
-          icon="user"
-          placeholder="Enter Last Name"
-          name="last-name
-          "
-          icon="mynaUser"
-        />
-        <app-input-field
-          icon="user"
-          placeholder="Enter Username"
-          name="username"
-          icon="mynaUserSolid"
-        />
-        <app-input-field
-          icon="user"
-          placeholder="Enter Email"
-          name="email"
-          icon="mynaEnvelope"
-          type="email"
-        />
-        <app-input-field
-          icon="user"
-          placeholder="Enter Password"
-          name="password"
-          icon="mynaLockSolid"
-          type="password"
-        />
-        <app-input-field
-          icon="user"
-          placeholder="Confirm Password"
-          name="confirm-password"
-          icon="mynaLockPasswordSolid"
-          type="password"
-        />
-        <div id="reg-terms">
-          <label>I agree to all terms</label>
-          <input type="checkbox" name="terms" />
-        </div>
-        <app-primary-button label="Register" />
+        <form (ngSubmit)="onSubmit()">
+          <h1>Sign Up</h1>
+          <!-- <app-input-field
+            icon="user"
+            id="firstName"
+            placeholder="Enter First Name"
+            name="firstName"
+            icon="mynaUser"
+            [(ngModel)]="firstName"
+          /> -->
+          <div id="input-field-wrapper">
+            <div>
+              <ng-icon name="mynaUser" />
+            </div>
+            <input
+              placeholder="Enter First Name"
+              id="firstName"
+              name="firstName"
+              [(ngModel)]="firstName"
+            />
+          </div>
+
+          <div id="input-field-wrapper">
+            <div>
+              <ng-icon name="mynaUser" />
+            </div>
+            <input
+              placeholder="Enter Last Name"
+              id="lastName"
+              name="lastName"
+              [(ngModel)]="lastName"
+            />
+          </div>
+
+          <div id="input-field-wrapper">
+            <div>
+              <ng-icon name="mynaUserSolid" />
+            </div>
+            <input
+              id="username"
+              placeholder="Enter Username"
+              name="username"
+              [(ngModel)]="username"
+            />
+          </div>
+
+          <div id="input-field-wrapper">
+            <div>
+              <ng-icon name="mynaEnvelope" />
+            </div>
+            <input
+              placeholder="Enter Email"
+              id="email"
+              name="email"
+              [(ngModel)]="email"
+            />
+          </div>
+
+          <div id="input-field-wrapper">
+            <div>
+              <ng-icon name="mynaLockSolid" />
+            </div>
+            <input
+              placeholder="Enter Password"
+              id="password"
+              name="password"
+              [(ngModel)]="password"
+            />
+          </div>
+
+          <div id="input-field-wrapper">
+            <div>
+              <ng-icon name="mynaLockPasswordSolid" />
+            </div>
+            <input
+              placeholder="Confirm Password"
+              id="confirmPassword"
+              name="confirmPassword"
+              [(ngModel)]="confirmPassword"
+            />
+          </div>
+          <!-- 
+          <app-input-field
+            icon="user"
+            placeholder="Enter Last Name"
+            name="lastName"
+            id="lastName"
+            icon="mynaUser"
+          />
+          <app-input-field
+            icon="user"
+            id="username"
+            placeholder="Enter Username"
+            name="username"
+            icon="mynaUserSolid"
+          />
+          <app-input-field
+            icon="user"
+            placeholder="Enter Email"
+            name="email"
+            icon="mynaEnvelope"
+            id="email"
+            type="email"
+          />
+          <app-input-field
+            icon="user"
+            placeholder="Enter Password"
+            name="password"
+            icon="mynaLockSolid"
+            type="password"
+            id="password"
+          />
+          <app-input-field
+            icon="user"
+            placeholder="Confirm Password"
+            name="confirm-password"
+            id="confirmPassword"
+            icon="mynaLockPasswordSolid"
+            type="password"
+          /> -->
+          <!-- <div id="reg-terms">
+            <label>I agree to all terms</label>
+            <input type="checkbox" name="terms" />
+          </div> -->
+          <app-primary-button label="Register" />
+        </form>
         <div id="reg-login">
           <p>Already have an account?</p>
           <a routerLink="/auth/login">Sign in</a>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 
 @Component({
@@ -12,4 +12,5 @@ export class InputFieldComponent {
   @Input() type = 'text';
   @Input({ required: true }) icon!: string;
   @Input({ required: true }) name!: string;
+  @Input({ required: false }) id!: string;
 }
