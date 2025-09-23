@@ -42,7 +42,7 @@ import { Subscription } from 'rxjs';
     }),
   ],
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent {
   firstName = '';
   lastName = '';
   username = '';
@@ -50,18 +50,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   password = '';
   confirmPassword = '';
   private registerService = inject(RegisterService);
-  private subscribedData: any;
 
-  ngOnInit(): void {
-    this.subscribedData = this.registerService.getData();
-    console.log('From component: ', this.subscribedData);
-
-    this.registerService.getBlahData();
-  }
-
-  ngOnDestroy(): void {
-    this.subscribedData.unsubscribe();
-  }
   onSubmit() {
     const newUser = {
       FirstName: this.firstName,
