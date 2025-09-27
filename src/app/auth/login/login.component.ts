@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { InputFieldComponent } from '../../sharable/input-field/input-field.component';
 import { PrimaryButtonComponent } from '../../sharable/primary-button/primary-button.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -7,9 +7,10 @@ import {
   mynaPasswordSolid,
   mynaUserSolid,
 } from '@ng-icons/mynaui/solid';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { LoginService } from './login.service';
+import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -18,11 +19,19 @@ import { LoginService } from './login.service';
   styleUrl: './login.component.scss',
   viewProviders: [provideIcons({ mynaUserSolid, mynaLockSolid })],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   username = '';
   password = '';
-  private loginService = inject(LoginService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
+  ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
+
+    console.log('Is authenticated: ', this.authService.isAuthenticated());
+  }
   onSubmit() {
     const user = {
       username: this.username,
@@ -30,7 +39,11 @@ export class LoginComponent {
     };
 
     console.log('User on submit: ', user);
-    const u = this.loginService.login(user);
-    console.log('The logged in User: ', u);
+    this.authService.login(user).subscribe({
+      next: (res) => {
+        console.log('Subscribed login: ', res);
+        this.router.navigate(['/dashboard']);
+      },
+    });
   }
 }

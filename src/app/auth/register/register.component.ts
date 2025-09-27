@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { InputFieldComponent } from '../../sharable/input-field/input-field.component';
 import { PrimaryButtonComponent } from '../../sharable/primary-button/primary-button.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   mynaLockPasswordSolid,
@@ -18,8 +18,8 @@ import {
 import { mynaEnvelope, mynaUser } from '@ng-icons/mynaui/outline';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { RegisterService } from './reigster.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -49,7 +49,8 @@ export class RegisterComponent {
   email = '';
   password = '';
   confirmPassword = '';
-  private registerService = inject(RegisterService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   onSubmit() {
     const newUser = {
@@ -61,6 +62,14 @@ export class RegisterComponent {
       ConfirmPassword: this.confirmPassword,
     };
 
-    this.registerService.postData(newUser);
+    this.authService.register(newUser).subscribe({
+      next: (res) => {
+        console.log('From component: ', res);
+        this.router.navigate(['/dashboard']);
+      },
+      error: (error) => {
+        console.error('Registration failed: ', error);
+      },
+    });
   }
 }
