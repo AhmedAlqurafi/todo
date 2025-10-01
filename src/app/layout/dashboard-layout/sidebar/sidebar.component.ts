@@ -4,6 +4,7 @@ import { ItemComponent } from './item/item.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { mynaLogoutSolid } from '@ng-icons/mynaui/solid';
 import { UserService } from '../../../services/user.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,8 +16,14 @@ import { UserService } from '../../../services/user.service';
 export class SidebarComponent implements OnInit {
   sidebarItems = SIDEBAR_ITEMS;
   userService = inject(UserService);
+  private authService = inject(AuthService);
 
   ngOnInit(): void {
     console.log('The user is: ', this.userService.getUser());
+  }
+
+  handleLogout() {
+    this.authService.logout();
+    console.log('Working');
   }
 }

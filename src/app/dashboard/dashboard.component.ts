@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TodoCardComponent } from '../todo/todo-card/todo-card.component';
 import { TODO } from '../../data/todo';
 import { ProgressBarComponent } from '../sharable/progress-bar/progress-bar.component';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { provideIcons } from '@ng-icons/core';
 import {
   mynaChartColumnIncreasingSolid,
   mynaCheckCircleOneSolid,

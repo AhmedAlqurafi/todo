@@ -1,11 +1,4 @@
-import {
-  Component,
-  inject,
-  Input,
-  OnDestroy,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { InputFieldComponent } from '../../sharable/input-field/input-field.component';
 import { PrimaryButtonComponent } from '../../sharable/primary-button/primary-button.component';
 import { Router, RouterLink } from '@angular/router';
@@ -16,9 +9,7 @@ import {
   mynaUserSolid,
 } from '@ng-icons/mynaui/solid';
 import { mynaEnvelope, mynaUser } from '@ng-icons/mynaui/outline';
-import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

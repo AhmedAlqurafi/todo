@@ -5,6 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { DashboardLayoutComponent } from './layout/dashboard-layout/dashboard-layout.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './auth/auth.guard';
+import { GuestGuardService } from './auth/guest.guard';
 
 export const routes: Routes = [
   {
@@ -17,10 +18,12 @@ export const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent,
+        canActivate: [GuestGuardService],
       },
       {
         path: 'login',
         component: LoginComponent,
+        canActivate: [GuestGuardService],
       },
     ],
   },
