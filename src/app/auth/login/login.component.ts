@@ -5,10 +5,17 @@ import { mynaLockSolid, mynaUserSolid } from '@ng-icons/mynaui/solid';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { AutoFocusDirective } from '../../directives/autofocus.directive';
 
 @Component({
   selector: 'app-login',
-  imports: [PrimaryButtonComponent, RouterLink, FormsModule, NgIcon],
+  imports: [
+    PrimaryButtonComponent,
+    RouterLink,
+    FormsModule,
+    NgIcon,
+    AutoFocusDirective,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   viewProviders: [provideIcons({ mynaUserSolid, mynaLockSolid })],
@@ -25,10 +32,8 @@ export class LoginComponent {
       password: this.password,
     };
 
-    console.log('User on submit: ', user);
     this.authService.login(user).subscribe({
       next: (res) => {
-        console.log('Subscribed login: ', res);
         this.router.navigate(['/dashboard']);
       },
     });

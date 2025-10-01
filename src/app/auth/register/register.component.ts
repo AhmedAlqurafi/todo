@@ -11,6 +11,7 @@ import {
 import { mynaEnvelope, mynaUser } from '@ng-icons/mynaui/outline';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { AutoFocusDirective } from '../../directives/autofocus.directive';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,7 @@ import { AuthService } from '../../services/auth.service';
     PrimaryButtonComponent,
     RouterLink,
     NgIcon,
+    AutoFocusDirective,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
