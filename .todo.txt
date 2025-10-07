@@ -1,0 +1,32 @@
+1- Implement Auth:
+    A- Logout - Completed (Maybe add an endpoint for logging out)
+    B- Refresh token
+    C- Handle Errors:
+        I- In the backend:
+            - Incorrect username or password. (Done)
+            - Duplicate username or email.  (Done)
+            - Password and Confirm Password does not match. (Done)
+            - Password is too short (less than 8 characters). 
+            - Username length >= 6 <= 20. (Done)
+            - Username must not include the following: admin, root, administration, system (Done)
+            - Usernames should be stored in lowercase. (Done)
+            - Remove whitespaces from username. (Done)
+        II- In the frontend.
+    D- Remember me.
+    E- Hash Passwords. (Completed)
+    F- Log Auth errors.
+    G- Prevent user from registering or logging if a field is missing or left blank in Front-end.
+    H- Enhance input CSS when user is focuses on it.
+    I- Add eye icon to enable users from seeing their passwords.
+    J- Verify user through an OTP sent to registered email.
+    K- Fix ID auto increment in Backend
+    L- Sanitize inputs. (Such as firstName, lastName, username etc...)
+    M- Apply Rate Limit to register and login endpoints.
+
+2- Todo:
+    A- Create Todo
+    B- 
+
+3- Category:
+    A- Prevent system from creating a category with non existing user Id. (Completed) 
+    B- Prompt the user when deleting a category to delete todo associated with it.

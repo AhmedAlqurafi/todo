@@ -17,9 +17,10 @@ export class SidebarComponent implements OnInit {
   sidebarItems = SIDEBAR_ITEMS;
   userService = inject(UserService);
   private authService = inject(AuthService);
+  user = this.authService.getCurrentUser();
 
   ngOnInit(): void {
-    console.log('The user is: ', this.userService.getUser());
+    console.log('The user is: ', this.user);
   }
 
   handleLogout() {
