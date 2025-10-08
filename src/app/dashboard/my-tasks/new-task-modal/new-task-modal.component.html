@@ -1,7 +1,50 @@
-<button mat-icon-button (click)="closeDialog()">
-  <mat-icon fontIcon="close"></mat-icon>
-</button>
-<h2 mat-dialog-title>Add a New Task</h2>
-<mat-dialog-content>
-  <h3></h3>
-</mat-dialog-content>
+<div id="modal-wrapper">
+  <div id="modal-header">
+    <div>
+      <h2>Add New Task</h2>
+      <div id="title-underline"></div>
+    </div>
+    <button (click)="handleCloseModal()">Go Back</button>
+  </div>
+  <div id="modal-main">
+    <div class="input-div">
+      <label>Title</label>
+      <input />
+    </div>
+    <div class="input-div">
+      <label>Due Date</label>
+      <input type="date" />
+    </div>
+    <div id="priority-section">
+      <label for="priority">Priority</label>
+      <div id="priority">
+        <div id="high">
+          <input type="radio" id="high" name="priority" value="high" />
+          <label for="high">High</label>
+        </div>
+
+        <div id="medium">
+          <input type="radio" id="medium" name="priority" value="medium" />
+          <label for="medium">Medium</label>
+        </div>
+
+        <div id="low">
+          <input type="radio" id="low" name="priority" value="low" />
+          <label for="low">Low</label>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h6>Task Description</h6>
+      <textarea></textarea>
+
+      <h6>Upload Image</h6>
+      <input type="file" />
+    </div>
+  </div>
+
+  <div id="modal-footer">
+    <button>Done</button>
+  </div>
+</div>

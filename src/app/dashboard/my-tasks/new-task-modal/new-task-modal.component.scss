@@ -1,0 +1,108 @@
+@import "../../../../styles/_variables";
+
+#modal-wrapper {
+  min-height: 100%;
+  padding: 40px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+#modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & > div > h2 {
+    font-size: 1.3rem;
+  }
+
+  & button {
+    border: 0px;
+    background-color: transparent;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      text-decoration: underline $dark-orange;
+    }
+  }
+}
+
+#title-underline {
+  width: 75%;
+  min-height: 2px;
+  background-color: $dark-orange;
+}
+
+#modal-main {
+  margin: 30px 0;
+  padding: 15px;
+  border: 1px solid $gray-blue;
+  border-radius: 2px;
+  flex-grow: 1;
+
+  & .input-div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  & .input-div:nth-child(2) label {
+    margin-top: 20px;
+  }
+
+  & .input-div input {
+    padding: 5px;
+    width: 75%;
+    border-radius: 4px;
+    border: 1px solid $gray-blue;
+    margin-top: 4px;
+
+    &:focus-visible {
+      border: 1px solid #000;
+      outline: 0;
+    }
+  }
+
+  & #priority-section {
+    margin-top: 20px;
+  }
+
+  & #priority {
+    display: flex;
+    margin-top: 7px;
+    gap: 40px;
+    color: $gray-blue;
+
+    & #high {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: red;
+    }
+
+    & #medium {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: skyblue;
+    }
+
+    & #low {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: green;
+    }
+  }
+}
+
+#modal-footer {
+  background-color: saddlebrown;
+}
+#priority-choices {
+  display: flex;
+  gap: 20px;
+}

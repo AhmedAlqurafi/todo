@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-input-field',
-  imports: [NgIcon, AutoFocusDirective, FormsModule],
+  imports: [NgIcon, FormsModule],
   templateUrl: './input-field.component.html',
   styleUrl: './input-field.component.scss',
 })

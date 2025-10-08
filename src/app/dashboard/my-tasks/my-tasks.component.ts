@@ -1,20 +1,32 @@
-import { Component, inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
+import { NgIf } from '@angular/common';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  OnInit,
+  AfterViewInit,
+} from '@angular/core';
 import { NewTaskModalComponent } from './new-task-modal/new-task-modal.component';
 
 @Component({
   selector: 'app-my-tasks',
-  imports: [MatButtonModule],
+  imports: [NewTaskModalComponent],
   templateUrl: './my-tasks.component.html',
   styleUrl: './my-tasks.component.scss',
 })
-export class MyTasksComponent {
+export class MyTasksComponent implements AfterViewInit {
   // Create new task modal
-  isModalOpen = false;
-  readonly dialog = inject(MatDialog);
+  isModalOpen = true;
+  @ViewChild('dialog') dialogRef!: ElementRef<HTMLDialogElement>;
 
-  openDialog(): void {
-    this.dialog.open(NewTaskModalComponent);
+  ngAfterViewInit(): void {
+    this.dialogRef.nativeElement.showModal();
+  }
+  openModal(): void {
+    this.dialogRef.nativeElement.showModal();
+  }
+
+  closeModal(): void {
+    this.dialogRef.nativeElement.close();
   }
 }

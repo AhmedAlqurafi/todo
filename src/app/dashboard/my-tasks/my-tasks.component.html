@@ -1,3 +1,7 @@
+<dialog #dialog id="modal">
+  <app-new-task-modal id="modal-tag" (closeModal)="closeModal()" />
+</dialog>
+
 <div id="main-wrapper">
   <div id="section-wrapper">
     <h2>My Tasks</h2>
@@ -7,7 +11,7 @@
       </div>
       <div id="create-new-task-div">
         <!-- Create new task -->
-        <button mat-raised-button (click)="openDialog()">&#43;</button>
+        <button (click)="openModal()">&#43;</button>
       </div>
     </div>
   </div>
