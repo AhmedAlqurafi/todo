@@ -1,5 +1,9 @@
 <li>
-  <a routerLinkActive="active-item" [routerLink]="item.href">
+  <a
+    routerLinkActive="active-item"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [routerLink]="item.href"
+  >
     <ng-icon id="list-icon" [name]="item.icon" />
     <span> {{ item.title }}</span>
   </a>

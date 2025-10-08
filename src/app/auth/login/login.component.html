@@ -6,8 +6,18 @@
       </div>
     </div>
     <div id="login-form">
-      <form (ngSubmit)="onSubmit()">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <h1>Sign In</h1>
+        <!-- <app-input-field
+          (appAutoFocus)="(true)"
+          placeholder="Enter Username"
+          id="username"
+          name="username"
+          ngModel
+          required
+          icon="mynaUserSolid"
+        /> -->
+
         <div id="input-field-wrapper">
           <div>
             <ng-icon name="mynaUserSolid" />
@@ -15,9 +25,10 @@
           <input
             appAutoFocus
             placeholder="Enter Username"
-            id="username"
             name="username"
-            [(ngModel)]="username"
+            ngModel
+            required
+            minlength="6"
           />
         </div>
 
@@ -27,10 +38,10 @@
           </div>
           <input
             placeholder="Enter Password"
-            id="password"
             name="password"
             type="password"
-            [(ngModel)]="password"
+            ngModel
+            required
           />
         </div>
         <div id="login-remember-me">

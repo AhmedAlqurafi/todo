@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
 import { RegisterComponent } from './auth/register/register.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { DashboardLayoutComponent } from './layout/dashboard-layout/dashboard-layout.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './auth/auth.guard';
 import { GuestGuardService } from './auth/guest.guard';
+import { MyTasksComponent } from './dashboard/my-tasks/my-tasks.component';
+import { HomepageComponent } from './dashboard/homepage.component';
 
 export const routes: Routes = [
   {
@@ -35,7 +36,11 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent,
+        component: HomepageComponent,
+      },
+      {
+        path: 'my-tasks',
+        component: MyTasksComponent,
       },
     ],
   },

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SideBarItem } from './item.model';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -30,10 +30,9 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 export class ItemComponent {
   @Input({ required: true }) item!: SideBarItem;
   path: string;
+  isActive = false;
 
   constructor(private router: Router) {
     this.path = this.router.url;
-
-    console.log('Path: ', this.path);
   }
 }

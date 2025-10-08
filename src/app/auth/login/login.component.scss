@@ -156,3 +156,10 @@ main {
     margin-bottom: 3px;
   }
 }
+
+#input-field-wrapper.ng-invalid.ng-dirty {
+  background-color: black;
+}
+input.ng-invalid.ng-touched.ng-dirty {
+  color: red;
+}

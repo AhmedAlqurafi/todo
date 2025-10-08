@@ -3,9 +3,10 @@ import { PrimaryButtonComponent } from '../../sharable/primary-button/primary-bu
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { mynaLockSolid, mynaUserSolid } from '@ng-icons/mynaui/solid';
 import { Router, RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { AutoFocusDirective } from '../../directives/autofocus.directive';
+import { InputFieldComponent } from '../../sharable/input-field/input-field.component';
 
 @Component({
   selector: 'app-login',
@@ -15,21 +16,21 @@ import { AutoFocusDirective } from '../../directives/autofocus.directive';
     FormsModule,
     NgIcon,
     AutoFocusDirective,
+    InputFieldComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   viewProviders: [provideIcons({ mynaUserSolid, mynaLockSolid })],
 })
 export class LoginComponent {
-  username = '';
-  password = '';
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    console.log('Form: ', form);
     const user = {
-      username: this.username,
-      password: this.password,
+      username: form.value.username,
+      password: form.value.password,
     };
 
     this.authService.login(user).subscribe({

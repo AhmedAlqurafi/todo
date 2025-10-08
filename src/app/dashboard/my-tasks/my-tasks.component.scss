@@ -1,0 +1,48 @@
+@import "../../../styles/variables";
+
+:host {
+  height: 100%;
+}
+#main-wrapper {
+  display: flex;
+  gap: 15px;
+  height: 100%;
+}
+
+#section-wrapper {
+  width: 100%;
+  border: 1px solid $gray-blue;
+  border-radius: 7px;
+  padding: 20px;
+}
+
+#my-tasks-div {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 27px);
+}
+
+#tasks-list-div {
+  flex-grow: 1;
+}
+
+#create-new-task-div {
+  align-self: flex-end;
+}
+
+#create-new-task-div button {
+  min-width: 50px;
+  min-height: 50px;
+  padding: 10px;
+  border-radius: 100%;
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: $primary-color-hover;
+  }
+}

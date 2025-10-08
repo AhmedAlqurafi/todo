@@ -1,0 +1,41 @@
+<h2>Welcome back, {{ user?.firstName }}</h2>
+<div id="dashboard-main-section">
+  <div class="dashboard-box" id="dashboard-todo">
+    @for(todo of todoTasks; track todo.id) {
+    <app-todo-card [todo]="todo" />
+    }
+  </div>
+  <div id="dashboard-todo-statistics">
+    <!-- <div class="dashboard-box">
+        <div class="dashboard-task-status">
+          <ng-icon name="mynaChartColumnIncreasingSolid" />
+          <h6>Task Status</h6>
+        </div>
+        <div class="dashboard-box-bar-charts">
+          <app-progress-bar color="green" [percentage]="84" label="Completed" />
+          <app-progress-bar
+            color="blue"
+            [percentage]="10"
+            label="In Progress"
+          />
+          <app-progress-bar color="red" [percentage]="6" label="Not Started" />
+        </div>
+      </div> -->
+
+    <app-card title="Task Status" icon="mynaChartColumnIncreasingSolid">
+      <div class="dashboard-box-bar-charts">
+        <app-progress-bar color="green" [percentage]="84" label="Completed" />
+        <app-progress-bar color="blue" [percentage]="10" label="In Progress" />
+        <app-progress-bar color="red" [percentage]="6" label="Not Started" />
+      </div>
+    </app-card>
+
+    <div class="dashboard-box-completed-todo">
+      <app-card
+        style="height: 100%"
+        icon="mynaCheckCircleOneSolid"
+        title="Completed Tasks"
+      />
+    </div>
+  </div>
+</div>

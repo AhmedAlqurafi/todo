@@ -44,11 +44,11 @@ export class AuthService {
   register(user: RegisterRequest): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(this.registerApi, user).pipe(
       map((response) => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify(response.user));
+        localStorage.setItem('token', response.result.token);
+        localStorage.setItem('user', JSON.stringify(response.result.user));
 
-        this.tokenSubject.next(response.token);
-        this.currentUserSubject.next(response.user);
+        this.tokenSubject.next(response.result.token);
+        this.currentUserSubject.next(response.result.user);
         return response;
       })
     );
@@ -57,11 +57,11 @@ export class AuthService {
   login(user: LoginRequest): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(this.loginAPI, user).pipe(
       map((response) => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify(response.user));
+        localStorage.setItem('token', response.result.token);
+        localStorage.setItem('user', JSON.stringify(response.result.user));
 
-        this.tokenSubject.next(response.token);
-        this.currentUserSubject.next(response.user);
+        this.tokenSubject.next(response.result.token);
+        this.currentUserSubject.next(response.result.user);
         return response;
       })
     );

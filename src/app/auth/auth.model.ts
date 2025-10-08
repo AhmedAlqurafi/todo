@@ -1,6 +1,11 @@
 import { User } from './user.model';
 
 export interface AuthResponse {
-  token: string;
-  user: User;
+  errorMessages: string[];
+  isSuccess: boolean;
+  result: {
+    token: string;
+    user: User;
+  };
+  statusCode: number;
 }

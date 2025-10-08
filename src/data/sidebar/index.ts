@@ -3,7 +3,7 @@ import { SideBarItem } from '../../app/layout/dashboard-layout/sidebar/item/item
 export const SIDEBAR_ITEMS: SideBarItem[] = [
   {
     id: '1',
-    title: 'Dashboard',
+    title: 'Homepage',
     href: '/dashboard',
     icon: 'mynaGridSolid',
   },

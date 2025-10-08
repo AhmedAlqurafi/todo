@@ -13,15 +13,11 @@ import { AuthService } from '../../../services/auth.service';
   styleUrl: './sidebar.component.scss',
   viewProviders: [provideIcons({ mynaLogoutSolid })],
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
   sidebarItems = SIDEBAR_ITEMS;
   userService = inject(UserService);
   private authService = inject(AuthService);
   user = this.authService.getCurrentUser();
-
-  ngOnInit(): void {
-    console.log('The user is: ', this.user);
-  }
 
   handleLogout() {
     this.authService.logout();
