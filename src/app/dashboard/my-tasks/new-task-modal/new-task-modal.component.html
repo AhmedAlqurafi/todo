@@ -6,45 +6,107 @@
     </div>
     <button (click)="handleCloseModal()">Go Back</button>
   </div>
-  <div id="modal-main">
-    <div class="input-div">
-      <label>Title</label>
-      <input />
-    </div>
-    <div class="input-div">
-      <label>Due Date</label>
-      <input type="date" />
-    </div>
-    <div id="priority-section">
-      <label for="priority">Priority</label>
-      <div id="priority">
-        <div id="high">
-          <input type="radio" id="high" name="priority" value="high" />
-          <label for="high">High</label>
+  <form #newTask="ngForm" (ngSubmit)="onSubmit(newTask)">
+    <div id="modal-main">
+      <div class="input-div">
+        <label>Title</label>
+        <input required name="title" ngModel placeholder="Enter Task Title" />
+      </div>
+
+      <div id="dueDate-category-section">
+        <div id="dueDate-section">
+          <div class="input-div">
+            <label>Due Date</label>
+            <input type="date" required name="dueDate" ngModel />
+          </div>
+        </div>
+        <div id="category-section">
+          <label>Category</label>
+          <select name="category" ngModel>
+            <option value="" disabled>Select a category</option>
+            <option
+              *ngFor="let category of categoriesList"
+              [value]="category.id"
+            >
+              {{ category.categoryName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div id="priority-section">
+        <label for="priority">Priority</label>
+        <div id="priority">
+          <div id="high">
+            <input
+              type="radio"
+              id="high"
+              name="priority"
+              value="high"
+              ngModel
+            />
+            <label for="high">High</label>
+          </div>
+
+          <div id="medium">
+            <input
+              type="radio"
+              id="medium"
+              name="priority"
+              value="medium"
+              ngModel
+            />
+            <label for="medium">Medium</label>
+          </div>
+
+          <div id="low">
+            <input type="radio" id="low" name="priority" value="low" ngModel />
+            <label for="low">Low</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="img-desc-section">
+        <div class="textarea-div">
+          <label>Task Description</label>
+          <textarea
+            name="taskDesc"
+            ngModel
+            cols="40"
+            rows="10"
+            placeholder="Enter Task Description"
+          ></textarea>
         </div>
 
-        <div id="medium">
-          <input type="radio" id="medium" name="priority" value="medium" />
-          <label for="medium">Medium</label>
-        </div>
+        <div id="upload-image-container">
+          <label>Upload Image</label>
+          <div id="upload-image">
+            <span class="upload-image-icon">
+              <ng-icon name="mynaImage" />
+            </span>
+            <p>Upload an image</p>
+            <button
+              type="button"
+              class="upload-image-btn"
+              (click)="fileInput.click()"
+            >
+              Browse
+            </button>
 
-        <div id="low">
-          <input type="radio" id="low" name="priority" value="low" />
-          <label for="low">Low</label>
+            <input
+              type="file"
+              accept="image/*"
+              #fileInput
+              class="upload-image-input"
+              (change)="onFileSelected($event)"
+            />
+          </div>
         </div>
       </div>
     </div>
 
-    <div>
-      <h6>Task Description</h6>
-      <textarea></textarea>
-
-      <h6>Upload Image</h6>
-      <input type="file" />
+    <div id="modal-footer">
+      <button>Done</button>
     </div>
-  </div>
-
-  <div id="modal-footer">
-    <button>Done</button>
-  </div>
+  </form>
 </div>
