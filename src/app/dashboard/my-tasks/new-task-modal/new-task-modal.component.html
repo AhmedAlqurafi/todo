@@ -38,29 +38,17 @@
         <label for="priority">Priority</label>
         <div id="priority">
           <div id="high">
-            <input
-              type="radio"
-              id="high"
-              name="priority"
-              value="high"
-              ngModel
-            />
+            <input type="radio" id="high" name="priority" value="1" ngModel />
             <label for="high">High</label>
           </div>
 
           <div id="medium">
-            <input
-              type="radio"
-              id="medium"
-              name="priority"
-              value="medium"
-              ngModel
-            />
+            <input type="radio" id="medium" name="priority" value="2" ngModel />
             <label for="medium">Medium</label>
           </div>
 
           <div id="low">
-            <input type="radio" id="low" name="priority" value="low" ngModel />
+            <input type="radio" id="low" name="priority" value="3" ngModel />
             <label for="low">Low</label>
           </div>
         </div>
@@ -99,6 +87,8 @@
               #fileInput
               class="upload-image-input"
               (change)="onFileSelected($event)"
+              ngModel
+              name="file"
             />
           </div>
         </div>
