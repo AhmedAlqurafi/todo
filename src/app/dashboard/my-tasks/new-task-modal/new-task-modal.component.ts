@@ -4,6 +4,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { mynaImage } from '@ng-icons/mynaui/outline';
 import { TaskService } from '../../../services/task.service';
+import { TaskRequest } from '../../../models/taskRequest.model';
+import { PRIORITY_NAME_TO_NUMBER } from '../../../mappings/priority';
 
 @Component({
   selector: 'app-new-task-modal',
@@ -14,6 +16,7 @@ import { TaskService } from '../../../services/task.service';
 })
 export class NewTaskModalComponent {
   @Output() closeModal = new EventEmitter();
+
   private taskService = inject(TaskService);
   private uploadedFile: File | null = null;
 
@@ -32,21 +35,10 @@ export class NewTaskModalComponent {
   }
 
   onSubmit(task: NgForm) {
-    const taskValues = task.form.value;
-
-    const newTask = {
-      Title: taskValues.title,
-      Details: taskValues.taskDesc,
-      CategoryId: taskValues.category,
-      PriorityId: taskValues.priority,
-      Deadline: taskValues.dueDate,
-      ImageURL: 'http://test.com',
-    };
-    console.log('New Task: ', newTask);
-
-    this.taskService.addTask(newTask).subscribe({
-      next: (res) => {
-        console.log(res);
+    console.log('Submitted task: ', task.form.value);
+    this.taskService.addTask(task.form.value).subscribe({
+      next: () => {
+        this.closeModal.emit();
       },
       error: (err) => {
         console.error(err);

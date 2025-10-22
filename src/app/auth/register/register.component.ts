@@ -17,7 +17,6 @@ import { AutoFocusDirective } from '../../directives/autofocus.directive';
   selector: 'app-register',
   imports: [
     FormsModule,
-    InputFieldComponent,
     PrimaryButtonComponent,
     RouterLink,
     NgIcon,

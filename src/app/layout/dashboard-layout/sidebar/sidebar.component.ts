@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { SIDEBAR_ITEMS } from '../../../../data/sidebar';
+import { SIDEBAR_ITEMS } from '../../../data/sidebar';
 import { ItemComponent } from './item/item.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { mynaLogoutSolid } from '@ng-icons/mynaui/solid';

@@ -1,4 +1,4 @@
-import { SideBarItem } from '../../app/layout/dashboard-layout/sidebar/item/item.model';
+import { SideBarItem } from '../../layout/dashboard-layout/sidebar/item/item.model';
 
 export const SIDEBAR_ITEMS: SideBarItem[] = [
   {

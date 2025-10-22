@@ -1,6 +1,6 @@
 @import "../../../styles/variables";
 
-#todo-card-wrapper {
+#task-card-wrapper {
   padding: 10px 15px;
   border: 1px solid $gray-blue;
   border-radius: 10px;
@@ -9,11 +9,11 @@
   margin-bottom: 10px;
 }
 
-#todo-card-main {
+#task-card-main {
   display: flex;
 }
 
-#todo-card-header {
+#task-card-header {
   padding-right: 10px;
   h6 {
     font-size: 1.1rem;
@@ -25,7 +25,7 @@
   }
 }
 
-#todo-card-img {
+#task-card-img {
   img {
     width: 100px;
     height: 100px;
@@ -34,7 +34,7 @@
   }
 }
 
-#todo-card-footer {
+#task-card-footer {
   display: flex;
   justify-content: space-around;
   font-size: 0.8rem;

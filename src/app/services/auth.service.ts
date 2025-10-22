@@ -3,10 +3,10 @@ import { inject, Injectable, signal } from '@angular/core';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
-import { User } from '../auth/user.model';
-import { RegisterRequest } from '../auth/register/register.model';
+import { User } from '../models/user.model';
+import { RegisterRequest } from '../models/register.model';
 import { AuthResponse } from '../auth/auth.model';
-import { LoginRequest } from '../auth/login/login.model';
+import { LoginRequest } from '../models/login.model';
 
 @Injectable({
   providedIn: 'root',

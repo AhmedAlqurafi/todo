@@ -8,6 +8,9 @@
     <div id="my-tasks-div">
       <div id="tasks-list-div">
         <!-- List of tasks goes here -->
+        @for (task of tasksList; track task.id) {
+        <app-task-card [task]="task" />
+        }
       </div>
       <div id="create-new-task-div">
         <!-- Create new task -->
