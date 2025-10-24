@@ -5,8 +5,34 @@
   border: 1px solid $gray-blue;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
   margin-bottom: 10px;
+  gap: 15px;
+}
+
+.task-circular-progress {
+  & .circle-div {
+    width: 15px;
+    height: 15px;
+    display: block;
+    border-radius: 100%;
+    margin-top: 2px;
+  }
+}
+
+.circular-div-red {
+  border: 2px solid red;
+}
+
+.circular-div-blue {
+  border: 2px solid blue;
+}
+
+.circular-div-green {
+  border: 2px solid green;
+}
+
+.task-card {
+  flex-grow: 1;
 }
 
 #task-card-main {
@@ -15,8 +41,10 @@
 
 #task-card-header {
   padding-right: 10px;
+  flex-grow: 1;
+
   h6 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 5px;
   }
 
@@ -36,12 +64,16 @@
 
 #task-card-footer {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   font-size: 0.8rem;
   margin-top: 10px;
 
-  span {
+  & span {
     text-transform: capitalize;
+  }
+
+  & time {
+    color: $gray-blue;
   }
 }
 

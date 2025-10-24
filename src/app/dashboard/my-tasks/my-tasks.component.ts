@@ -11,6 +11,7 @@ import { NewTaskModalComponent } from './new-task-modal/new-task-modal.component
 import { TaskService } from '../../services/task.service';
 import { TaskResponse } from '../../models/taskResponse.model';
 import { TaskCardComponent } from '../../sharable/task-card/task-card.component';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-my-tasks',
@@ -21,20 +22,33 @@ import { TaskCardComponent } from '../../sharable/task-card/task-card.component'
 export class MyTasksComponent implements OnInit {
   // Create new task modal
   private readonly taskService = inject(TaskService);
-  tasksList: TaskResponse[] | null = null;
+
+  tasksList: Task[] | null = null;
+  // tasksList = this.taskService.tasks$;
   isModalOpen = true;
   @ViewChild('dialog') dialogRef!: ElementRef<HTMLDialogElement>;
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe({
+    // Get tasks
+    this.taskService.getMyTasks();
+
+    this.taskService.tasks$.subscribe({
       next: (res) => {
-        console.log('Tasks: ', res);
-        this.tasksList = [res];
+        this.tasksList = res;
+        console.log('Result: ', res);
       },
       error: (err) => {
         console.error('Error: ', err);
       },
     });
+    // this.taskService.getMyTasks().subscribe({
+    //   next: (res) => {
+    //     this.tasksList = res;
+    //   },
+    //   error: (err) => {
+    //     console.error('Error: ', err);
+    //   },
+    // });
   }
 
   openModal(): void {

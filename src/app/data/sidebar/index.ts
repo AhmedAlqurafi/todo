@@ -7,12 +7,12 @@ export const SIDEBAR_ITEMS: SideBarItem[] = [
     href: '/dashboard',
     icon: 'mynaGridSolid',
   },
-  {
-    id: '2',
-    title: 'Vital Tasks',
-    href: '/dashboard/vital-tasks',
-    icon: 'mynaDangerSolid',
-  },
+  // {
+  //   id: '2',
+  //   title: 'Vital Tasks',
+  //   href: '/dashboard/vital-tasks',
+  //   icon: 'mynaDangerSolid',
+  // },
   {
     id: '3',
     title: 'My Tasks',

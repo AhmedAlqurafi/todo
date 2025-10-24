@@ -1,50 +1,35 @@
 <div id="task-card-wrapper">
-  <div id="task-card-main">
-    <div id="task-card-header">
-      <h6>{{ task.title }}</h6>
-      <p>
-        {{
-          task.description.length > 100
-            ? `${task.description.substring(0, 100)}...`
-            : task.description
-        }}
-      </p>
-    </div>
-    <div id="task-card-img">
-      <img src="images.jpeg" alt="pic" />
-    </div>
+  <div class="task-circular-progress">
+    <div class="circle-div" [class]="circularDiv"></div>
   </div>
-  <div id="task-card-footer">
-    <p>
-      Priority:
-      <span
-        [ngClass]="
-          task.priority === 'critical'
-            ? 'dark-red'
-            : task.priority === 'high'
-            ? 'bright-orange'
-            : task.priority === 'moderate'
-            ? 'orange'
-            : 'sea-blue'
-        "
-        >{{ task.priority }}</span
+  <div class="task-card">
+    <div id="task-card-main">
+      <div id="task-card-header">
+        <h6>{{ task.title }}</h6>
+        <p>
+          {{
+          task.taskDesc.length > 100
+            ? `${task.taskDesc.substring(0, 100)}...`
+            : task.taskDesc
+          }}
+        </p>
+      </div>
+      <div id="task-card-img">
+        <img src="images.jpeg" alt="pic" />
+      </div>
+    </div>
+    <div id="task-card-footer">
+      <p>
+        Priority:
+        <span [class]="priorityStyle">{{ task.priority }}</span>
+      </p>
+      <p>
+        Status:
+        <span [class]="statusStyle">{{ task.status }}</span>
+      </p>
+      <time
+        >Created on: <span>{{ task.dueDate.toLocaleDateString() }}</span></time
       >
-    </p>
-    <p>
-      Status:
-      <span
-        [ngClass]="
-          task.status === 'not started'
-            ? 'red'
-            : task.status === 'completed'
-            ? 'green'
-            : 'blue'
-        "
-        >{{ task.status }}</span
-      >
-    </p>
-    <time
-      >Created on: <span>{{ task.date.toLocaleDateString() }}</span></time
-    >
+    </div>
   </div>
 </div>

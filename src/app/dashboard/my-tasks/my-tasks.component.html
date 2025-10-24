@@ -10,6 +10,12 @@
         <!-- List of tasks goes here -->
         @for (task of tasksList; track task.id) {
         <app-task-card [task]="task" />
+        } @empty {
+        <div class="empty-task-list-div">
+          <p class="empty-task-list-p">
+            To create a Task, click on the '+' button
+          </p>
+        </div>
         }
       </div>
       <div id="create-new-task-div">

@@ -5,6 +5,7 @@ export interface Task {
   taskDesc: string;
   category: number;
   priority: string;
+  status: string;
   imageURL: string;
   dueDate: Date;
 }

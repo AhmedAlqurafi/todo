@@ -1,6 +1,6 @@
 export interface NewTask {
   title: string;
-  textDesc: string;
+  taskDesc: string;
   dueDate: Date;
   imageURL: string;
   category: number;
