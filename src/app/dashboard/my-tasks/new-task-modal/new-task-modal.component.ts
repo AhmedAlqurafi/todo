@@ -16,10 +16,10 @@ import { PRIORITY_NAME_TO_NUMBER } from '../../../mappings/priority';
 })
 export class NewTaskModalComponent {
   @Output() closeModal = new EventEmitter();
-
   private taskService = inject(TaskService);
   private uploadedFile: File | null = null;
 
+  minDate = new Date().toISOString().split('T')[0]
   categoriesList = [
     {
       id: 1,

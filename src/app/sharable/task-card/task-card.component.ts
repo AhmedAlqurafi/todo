@@ -4,7 +4,7 @@ import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-card',
-  imports: [NgClass],
+  imports: [],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.scss',
 })
