@@ -35,7 +35,6 @@ export class NewTaskModalComponent {
   }
 
   onSubmit(task: NgForm) {
-    console.log('Submitted task: ', task.form.value);
     this.taskService.addTask(task.form.value).subscribe({
       next: () => {
         this.closeModal.emit();
@@ -43,6 +42,9 @@ export class NewTaskModalComponent {
       error: (err) => {
         console.error(err);
       },
+      complete: () => {
+        task.form.reset() 
+      }
     });
   }
 

@@ -1,10 +1,11 @@
 <h2>Welcome back, {{ user?.firstName }}</h2>
 <div id="dashboard-main-section">
-  <!-- <div class="dashboard-box" id="dashboard-todo">
+  <app-card  title="To-Do" icon="mynaClipboard"
+  >
     @for(todo of todoTasks; track todo.id) {
-    <app-todo-card [todo]="todo" />
+      <app-task-card [task]="todo" />
     }
-  </div> -->
+  </app-card>
   <div id="dashboard-todo-statistics">
     <!-- <div class="dashboard-box">
         <div class="dashboard-task-status">

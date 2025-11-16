@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Task } from '../../models/task.model';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-task-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.scss',
 })

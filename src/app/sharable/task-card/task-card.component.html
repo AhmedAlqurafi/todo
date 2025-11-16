@@ -1,11 +1,11 @@
-<div id="task-card-wrapper">
-  <div class="task-circular-progress">
+  <a  class="task-card-wrapper" [routerLink]="['/dashboard', 'my-tasks', task.id]">
+      <div class="task-circular-progress">
     <div class="circle-div" [class]="circularDiv"></div>
   </div>
   <div class="task-card">
     <div id="task-card-main">
       <div id="task-card-header">
-        <h6>{{ task.title }}</h6>
+        <h6>{{ task.title.length > 50 ? `${task.title.substring(0, 40)}...` : task.title }}</h6>
         <p>
           {{
           task.taskDesc.length > 100
@@ -32,4 +32,4 @@
       >
     </div>
   </div>
-</div>
+</a>

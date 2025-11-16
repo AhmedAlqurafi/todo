@@ -1,12 +1,15 @@
 @import "../../../styles/variables";
 
-#task-card-wrapper {
+.task-card-wrapper {
   padding: 10px 15px;
   border: 1px solid $gray-blue;
   border-radius: 10px;
   display: flex;
   margin-bottom: 10px;
   gap: 15px;
+  background-color: white;
+text-decoration: none;
+color: inherit;
 }
 
 .task-circular-progress {
@@ -102,3 +105,4 @@
 .dark-red {
   color: $dark-red;
 }
+
