@@ -1,11 +1,14 @@
-  <a  class="task-card-wrapper" [routerLink]="['/dashboard', 'my-tasks', task.id]">
-      <div class="task-circular-progress">
-    <div class="circle-div" [class]="circularDiv"></div>
+<div class="task-card-wrapper">
+  <div class="task-circular-progress">
+    <!-- Circular Status -->
+    <div class="circle" [class]="circularDiv"></div>
   </div>
   <div class="task-card">
-    <div id="task-card-main">
-      <div id="task-card-header">
+    <a [routerLink]="['/dashboard', 'my-tasks', task.id]" class="task-card-header">
+      <!-- Header -->
+       <div>
         <h6>{{ task.title.length > 50 ? `${task.title.substring(0, 40)}...` : task.title }}</h6>
+       <div class="task-card-paragraph">
         <p>
           {{
           task.taskDesc.length > 100
@@ -14,12 +17,14 @@
           }}
         </p>
       </div>
-      <div id="task-card-img">
+    </div>
+     <div class="task-card-img">
         <img src="images.jpeg" alt="pic" />
       </div>
-    </div>
-    <div id="task-card-footer">
-      <p>
+    </a>
+     <div class="task-card-footer">
+      <!-- Footer -->
+<p>
         Priority:
         <span [class]="priorityStyle">{{ task.priority }}</span>
       </p>
@@ -31,5 +36,27 @@
         >Created on: <span>{{ task.dueDate.toLocaleDateString() }}</span></time
       >
     </div>
+    
   </div>
-</a>
+<div class="three-dots-wrapper">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+       </div>
+</div> 
+ 
+ <!-- <a  class="task-card-wrapper" [routerLink]="['/dashboard', 'my-tasks', task.id]">
+      <div class="task-circular-progress">
+    <div class="circle-div" [class]="circularDiv"></div>
+  </div>
+  <div class="task-card">
+    <div id="task-card-main">
+      <div id="task-card-header">
+        
+      </div>
+    </div>
+    <div id="task-card-footer">
+      
+    </div>
+  </div>
+</a> -->
