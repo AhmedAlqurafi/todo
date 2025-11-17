@@ -8,4 +8,5 @@ export interface Task {
   status: string;
   imageURL: string;
   dueDate: Date;
+  createdAt: Date;
 }

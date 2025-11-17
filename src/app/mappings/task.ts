@@ -10,6 +10,7 @@ export const mapBackendTaskToFrontend = (backendTask: TaskResponse): Task => {
     title: backendTask.title,
     taskDesc: backendTask.details,
     dueDate: new Date(backendTask.deadline),
+    createdAt: new Date(backendTask.createdAt),
     imageURL: backendTask.imageURL,
     category: backendTask.categoryId,
     priority: PRIORITY_NUMBER_TO_NAME.get(backendTask.priorityId)!,

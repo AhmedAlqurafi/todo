@@ -8,4 +8,5 @@ export interface TaskResponse {
   statusId: number;
   imageURL: string;
   deadline: Date;
+  createdAt: Date;
 }
