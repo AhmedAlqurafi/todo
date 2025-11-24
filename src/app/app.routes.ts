@@ -7,7 +7,7 @@ import { AuthGuardService } from './auth/auth.guard';
 import { GuestGuardService } from './auth/guest.guard';
 import { MyTasksComponent } from './dashboard/my-tasks/my-tasks.component';
 import { HomepageComponent } from './dashboard/homepage.component';
-import { SingleTaskComponent } from './dashboard/my-tasks/single-task/single-task.component';
+import { SingleTaskComponent } from './dashboard/single-task/single-task.component';
 
 export const routes: Routes = [
   {
@@ -40,14 +40,18 @@ export const routes: Routes = [
         component: HomepageComponent,
       },
       {
+        path: 'task/:taskId',
+        component: SingleTaskComponent,
+      },
+      {
         path: 'my-tasks',
         component: MyTasksComponent,
         children: [
           {
             path: ':taskId',
-            component: SingleTaskComponent
-          }
-        ]
+            component: SingleTaskComponent,
+          },
+        ],
       },
     ],
   },

@@ -16,6 +16,20 @@ export class TaskService {
   private tasksSubjects = new BehaviorSubject<Task[]>([]);
   public tasks$ = this.tasksSubjects.asObservable();
 
+  private singleTaskSubject = new BehaviorSubject<Task>({
+    category: 0,
+    createdAt: new Date(),
+    dueDate: new Date(),
+    id: 0,
+    imageURL: '',
+    priority: '',
+    status: 0,
+    taskDesc: '',
+    title: '',
+    userId: 0,
+  });
+  public singleTask$ = this.singleTaskSubject.asObservable();
+
   private loadingSubjects = new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingSubjects.asObservable();
 
@@ -48,18 +62,29 @@ export class TaskService {
           console.error('Error loading tasks: ', err);
         },
       });
+  }
 
-    // return this.httpClient
-    //   .get<TaskResponse[]>(this.getMyTasksURL, {
-    //     headers: {
-    //       Authorization: `Bearer ${this.authService.getToken()}`,
-    //     },
-    //   })
-    //   .pipe(
-    //     map((taskArray) =>
-    //       taskArray.map((task) => mapBackendTaskToFrontend(task))
-    //     )
-    //   );
+  getTaskById(taskId: number) {
+    this.httpClient
+      .get<TaskResponse>(`http://localhost:5080/api/todo/${taskId}`, {
+        headers: {
+          Authorization: `Bearer ${this.authService.getToken()}`,
+        },
+      })
+      .pipe(
+        map((taskResponse) => {
+          const task: Task = mapBackendTaskToFrontend(taskResponse);
+          return task;
+        })
+      )
+      .subscribe({
+        next: (data) => {
+          this.singleTaskSubject.next(data);
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
   }
 
   addTask(task: NewTask): Observable<any> {
@@ -85,5 +110,30 @@ export class TaskService {
           this.tasksSubjects.next([...currentTasksState, convertedNewTask]);
         })
       );
+  }
+
+  changeStatusToInProgress(taskId: number) {
+    this.httpClient
+      .post<TaskResponse>(
+        `http://localhost:5080/api/todo/${taskId}/update-status`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.authService.getToken()}`,
+          },
+        }
+      )
+      .pipe(
+        map((taskResponse) => {
+          return mapBackendTaskToFrontend(taskResponse);
+        })
+      )
+      .subscribe({
+        next: (data) => {
+          this.singleTaskSubject.next(data);
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
   }
 }

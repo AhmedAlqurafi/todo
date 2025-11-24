@@ -1,0 +1,44 @@
+<div class="wrapper">
+  <div class="go-back-div">
+    <a [routerLink]="['/dashboard']">Go Back</a>
+  </div>
+  <div class="header-div">
+    <div class="image-div">
+      <img src="images.jpeg" alt="pic" />
+    </div>
+    <div class="title-div">
+      <h1>{{ task?.title }}</h1>
+      <p>
+        Priority:
+        <span [class]="priorityStyle">{{ task?.priority }}</span>
+      </p>
+      <p>
+        Status:
+        <span [class]="statusStyle">{{ taskStatusLabel(task?.status) }}</span>
+      </p>
+      <time
+        >Created on: <span>{{ formattedDate(task?.createdAt) }}</span></time
+      >
+    </div>
+  </div>
+  <div class="body-div">
+    <p>{{ task?.taskDesc }}</p>
+  </div>
+  <div class="footer-div">
+    <app-icon-button
+      iconName="mynaTrashOneSolid"
+      (onClick)="handleDeleteTask(task!.id)"
+      tooltip="Delete"
+    />
+    <app-icon-button
+      iconName="mynaEditOneSolid"
+      (onClick)="handleEditTask()"
+      tooltip="Edit"
+    />
+    <app-icon-button
+      iconName="mynaClockThreeSolid"
+      (onClick)="handleChangeStatus(task!.id)"
+      tooltip="Change status to In-Progress"
+    />
+  </div>
+</div>

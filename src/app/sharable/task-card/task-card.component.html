@@ -4,10 +4,7 @@
     <div class="circle" [class]="circularDiv"></div>
   </div>
   <div class="task-card">
-    <a
-      [routerLink]="['/dashboard', 'my-tasks', task.id]"
-      class="task-card-header"
-    >
+    <a [routerLink]="['/dashboard', 'task', task.id]" class="task-card-header">
       <!-- Header -->
       <div>
         <h6>
@@ -35,7 +32,7 @@
       </p>
       <p>
         Status:
-        <span [class]="statusStyle">{{ task.status }}</span>
+        <span [class]="statusStyle">{{ taskStatusLabel }}</span>
       </p>
       <time
         >Created on:

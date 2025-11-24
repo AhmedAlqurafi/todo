@@ -14,7 +14,8 @@ export const mapBackendTaskToFrontend = (backendTask: TaskResponse): Task => {
     imageURL: backendTask.imageURL,
     category: backendTask.categoryId,
     priority: PRIORITY_NUMBER_TO_NAME.get(backendTask.priorityId)!,
-    status: STATUS_NUMBER_TO_NAME.get(backendTask.statusId)!,
+    // status: STATUS_NUMBER_TO_NAME.get(backendTask.statusId)!,
+    status: backendTask.statusId,
   };
 
   return frontendTask;

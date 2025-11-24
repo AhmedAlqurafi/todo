@@ -11,31 +11,40 @@ import { TaskCardComponent } from '../sharable/task-card/task-card.component';
 import { Task } from '../models/task.model';
 import { TaskService } from '../services/task.service';
 import { mynaClipboard } from '@ng-icons/mynaui/outline';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [TaskCardComponent, ProgressBarComponent, CardComponent],
+  imports: [
+    RouterOutlet,
+    TaskCardComponent,
+    ProgressBarComponent,
+    CardComponent,
+  ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss',
   encapsulation: ViewEncapsulation.Emulated,
   viewProviders: [
-    provideIcons({ mynaChartColumnIncreasingSolid, mynaCheckCircleOneSolid, mynaClipboard }),
+    provideIcons({
+      mynaChartColumnIncreasingSolid,
+      mynaCheckCircleOneSolid,
+      mynaClipboard,
+    }),
   ],
 })
-export class HomepageComponent  implements OnInit{
-   todoTasks: Task[]  | null  = null
-    private authService = inject(AuthService);
+export class HomepageComponent implements OnInit {
+  todoTasks: Task[] | null = null;
+  private authService = inject(AuthService);
   user = this.authService.getCurrentUser();
-  private taskService = inject(TaskService)
+  private taskService = inject(TaskService);
 
-ngOnInit(): void {
-  this.taskService.getMyTasks()
+  ngOnInit(): void {
+    this.taskService.getMyTasks();
 
-  this.taskService.tasks$.subscribe({
-    next: (res)  => {
-      this.todoTasks = res
-    }
-  })
-}
-
+    this.taskService.tasks$.subscribe({
+      next: (res) => {
+        this.todoTasks = res;
+      },
+    });
+  }
 }
