@@ -56,7 +56,6 @@ export class RegisterComponent {
 
     this.authService.register(newUser).subscribe({
       next: (res) => {
-        console.log('From component: ', res);
         this.router.navigate(['/dashboard']);
       },
       error: (error) => {

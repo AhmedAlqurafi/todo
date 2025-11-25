@@ -49,6 +49,27 @@ export class SingleTaskComponent implements OnInit {
     this.taskService.singleTask$.subscribe({
       next: (data) => {
         this.task = data;
+              // Initilize styles
+        this.priorityStyle =
+          this.task?.priority === 'High'
+            ? 'red'
+            : this.task?.priority === 'Medium'
+            ? 'orange'
+            : 'sky-blue';
+
+        this.statusStyle =
+          this.task?.status === 1
+            ? 'red'
+            : this.task?.status === 2
+            ? 'blue'
+            : 'green';
+
+        this.circularDiv =
+          this.task?.status === 1
+            ? 'circular-div-red'
+            : this.task?.status === 2
+            ? 'circular-div-blue'
+            : 'circular-div-green';
       },
       error: (err) => {
         console.error(err);
@@ -59,27 +80,7 @@ export class SingleTaskComponent implements OnInit {
     //     console.log('Task fetched: ', res);
     //     this.task = res;
 
-    //     // Initilize styles
-    //     this.priorityStyle =
-    //       this.task?.priority === 'High'
-    //         ? 'red'
-    //         : this.task?.priority === 'Medium'
-    //         ? 'orange'
-    //         : 'sky-blue';
-
-    //     this.statusStyle =
-    //       this.task?.status === 1
-    //         ? 'red'
-    //         : this.task?.status === 2
-    //         ? 'blue'
-    //         : 'green';
-
-    //     this.circularDiv =
-    //       this.task?.status === 1
-    //         ? 'circular-div-red'
-    //         : this.task?.status === 2
-    //         ? 'circular-div-blue'
-    //         : 'circular-div-green';
+  
     //   },
     //   error: (err) => {
     //     console.error('Error fetching task: ', err);

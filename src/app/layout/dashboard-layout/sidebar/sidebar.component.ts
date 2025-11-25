@@ -21,6 +21,5 @@ export class SidebarComponent {
 
   handleLogout() {
     this.authService.logout();
-    console.log('Working');
   }
 }

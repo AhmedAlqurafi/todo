@@ -27,7 +27,6 @@ export class LoginComponent {
   private router = inject(Router);
 
   onSubmit(form: NgForm) {
-    console.log('Form: ', form);
     const user = {
       username: form.value.username,
       password: form.value.password,

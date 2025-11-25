@@ -34,7 +34,6 @@ export class MyTasksComponent implements OnInit {
     this.taskService.tasks$.subscribe({
       next: (res) => {
         this.tasksList = res;
-        console.log('Result: ', res);
       },
       error: (err) => {
         console.error('Error: ', err);

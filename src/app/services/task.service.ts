@@ -71,20 +71,21 @@ export class TaskService {
           Authorization: `Bearer ${this.authService.getToken()}`,
         },
       })
-      .pipe(
-        map((taskResponse) => {
-          const task: Task = mapBackendTaskToFrontend(taskResponse);
-          return task;
-        })
-      )
+      // .pipe(
+      //   map((taskResponse) => {
+      //     const task: Task = mapBackendTaskToFrontend(taskResponse);
+      //     console.log("taskResponse")
+      //     return task;
+      //   })
+      // )
       .subscribe({
         next: (data) => {
-          this.singleTaskSubject.next(data);
+           const task: Task = mapBackendTaskToFrontend(data);
+          this.singleTaskSubject.next(task);
         },
         error: (err) => {
           console.error(err);
-        },
-      });
+        },      });
   }
 
   addTask(task: NewTask): Observable<any> {
