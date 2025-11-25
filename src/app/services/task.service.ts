@@ -113,6 +113,19 @@ export class TaskService {
       );
   }
 
+  deleteTask(taskId: number): boolean  {
+    this.httpClient.delete(`http://localhost:5080/api/todo/${taskId}`, {headers: {
+      Authorization: `Bearer ${this.authService.getToken()}`
+    }}).subscribe({
+      next: (res) =>  {
+        console.log("Task deleted", res)
+      },error: (err) => {
+        console.error("Error occured: ", err)
+        return false
+      } 
+    })
+    return true
+  }
   changeStatusToInProgress(taskId: number) {
     this.httpClient
       .post<TaskResponse>(

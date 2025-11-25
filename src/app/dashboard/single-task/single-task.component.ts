@@ -96,7 +96,12 @@ export class SingleTaskComponent implements OnInit {
     console.log('Edit task');
   }
   handleDeleteTask(taskId: number) {
-    console.log('Clicked', taskId);
+    const res = this.taskService.deleteTask(taskId)
+    if(res) {
+      this.router.navigateByUrl("/dashboard")
+    } else {
+      console.error("Error occured")
+    }
   }
 
   handleChangeStatus(taskId: number) {
