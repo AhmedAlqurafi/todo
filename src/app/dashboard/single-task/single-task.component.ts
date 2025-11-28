@@ -5,12 +5,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { IconButtonComponent } from '../../sharable/icon-button/icon-button.component';
 import { provideIcons } from '@ng-icons/core';
 import {
+  mynaCheckCircleSolid,
   mynaClockThreeSolid,
   mynaEditOneSolid,
   mynaTrashOneSolid,
 } from '@ng-icons/mynaui/solid';
 import { STATUS_NUMBER_TO_NAME } from '../../mappings/status';
-import { mynaClockThree } from '@ng-icons/mynaui/outline';
 
 @Component({
   selector: 'app-single-task',
@@ -22,6 +22,7 @@ import { mynaClockThree } from '@ng-icons/mynaui/outline';
       mynaTrashOneSolid,
       mynaEditOneSolid,
       mynaClockThreeSolid,
+      mynaCheckCircleSolid,
     }),
   ],
 })
@@ -49,7 +50,7 @@ export class SingleTaskComponent implements OnInit {
     this.taskService.singleTask$.subscribe({
       next: (data) => {
         this.task = data;
-              // Initilize styles
+        // Initilize styles
         this.priorityStyle =
           this.task?.priority === 'High'
             ? 'red'
@@ -80,7 +81,6 @@ export class SingleTaskComponent implements OnInit {
     //     console.log('Task fetched: ', res);
     //     this.task = res;
 
-  
     //   },
     //   error: (err) => {
     //     console.error('Error fetching task: ', err);
@@ -96,16 +96,28 @@ export class SingleTaskComponent implements OnInit {
     console.log('Edit task');
   }
   handleDeleteTask(taskId: number) {
-    const res = this.taskService.deleteTask(taskId)
-    if(res) {
-      this.router.navigateByUrl("/dashboard")
+    const res = this.taskService.deleteTask(taskId);
+    if (res) {
+      this.router.navigateByUrl('/dashboard');
     } else {
-      console.error("Error occured")
+      console.error('Error occured');
     }
   }
 
-  handleChangeStatus(taskId: number) {
+  handleChangeStatusToInProgress(taskId: number) {
     this.taskService.changeStatusToInProgress(taskId);
+    this.taskService.singleTask$.subscribe({
+      next: (data) => {
+        this.task = data;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
+
+  handleChangeStatusToCompleted(taskId: number) {
+    this.taskService.changeStatusToCompleted(taskId);
     this.taskService.singleTask$.subscribe({
       next: (data) => {
         this.task = data;

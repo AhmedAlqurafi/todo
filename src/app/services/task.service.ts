@@ -80,12 +80,13 @@ export class TaskService {
       // )
       .subscribe({
         next: (data) => {
-           const task: Task = mapBackendTaskToFrontend(data);
+          const task: Task = mapBackendTaskToFrontend(data);
           this.singleTaskSubject.next(task);
         },
         error: (err) => {
           console.error(err);
-        },      });
+        },
+      });
   }
 
   addTask(task: NewTask): Observable<any> {
@@ -113,23 +114,53 @@ export class TaskService {
       );
   }
 
-  deleteTask(taskId: number): boolean  {
-    this.httpClient.delete(`http://localhost:5080/api/todo/${taskId}`, {headers: {
-      Authorization: `Bearer ${this.authService.getToken()}`
-    }}).subscribe({
-      next: (res) =>  {
-        console.log("Task deleted", res)
-      },error: (err) => {
-        console.error("Error occured: ", err)
-        return false
-      } 
-    })
-    return true
+  deleteTask(taskId: number): boolean {
+    this.httpClient
+      .delete(`http://localhost:5080/api/todo/${taskId}`, {
+        headers: {
+          Authorization: `Bearer ${this.authService.getToken()}`,
+        },
+      })
+      .subscribe({
+        next: (res) => {
+          console.log('Task deleted', res);
+        },
+        error: (err) => {
+          console.error('Error occured: ', err);
+          return false;
+        },
+      });
+    return true;
   }
   changeStatusToInProgress(taskId: number) {
     this.httpClient
       .post<TaskResponse>(
         `http://localhost:5080/api/todo/${taskId}/update-status`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.authService.getToken()}`,
+          },
+        }
+      )
+      .pipe(
+        map((taskResponse) => {
+          return mapBackendTaskToFrontend(taskResponse);
+        })
+      )
+      .subscribe({
+        next: (data) => {
+          this.singleTaskSubject.next(data);
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
+  }
+
+  changeStatusToCompleted(taskId: number) {
+    this.httpClient
+      .post<TaskResponse>(
+        `http://localhost:5080/api/todo/${taskId}/completed`,
         {
           headers: {
             Authorization: `Bearer ${this.authService.getToken()}`,

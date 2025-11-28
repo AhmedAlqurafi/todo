@@ -35,10 +35,18 @@
       (onClick)="handleEditTask()"
       tooltip="Edit"
     />
+    @if(task?.status == 1){
     <app-icon-button
       iconName="mynaClockThreeSolid"
-      (onClick)="handleChangeStatus(task!.id)"
+      (onClick)="handleChangeStatusToInProgress(task!.id)"
       tooltip="Change status to In-Progress"
     />
+    }@else {
+    <app-icon-button
+      iconName="mynaCheckCircleSolid"
+      (onClick)="handleChangeStatusToCompleted(task!.id)"
+      tooltip="Change status to Completed"
+    />
+    }
   </div>
 </div>
