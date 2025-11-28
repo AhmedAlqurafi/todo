@@ -34,16 +34,26 @@ import { RouterOutlet } from '@angular/router';
 })
 export class HomepageComponent implements OnInit {
   todoTasks: Task[] | null = null;
+  completedTasks: Task[] | null = null;
   private authService = inject(AuthService);
   user = this.authService.getCurrentUser();
   private taskService = inject(TaskService);
 
   ngOnInit(): void {
     this.taskService.getMyTasks();
-
     this.taskService.tasks$.subscribe({
       next: (res) => {
         this.todoTasks = res;
+      },
+    });
+
+    this.taskService.getCompletedTasks();
+    this.taskService.completedTasks$.subscribe({
+      next: (data) => {
+        this.completedTasks = data;
+      },
+      error: (err) => {
+        console.error(err);
       },
     });
   }

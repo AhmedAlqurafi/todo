@@ -35,7 +35,11 @@
         style="height: 100%"
         icon="mynaCheckCircleOneSolid"
         title="Completed Tasks"
-      />
+      >
+        @for (task of completedTasks; track task.id) {
+        <app-task-card [task]="task" />
+        }
+      </app-card>
     </div>
   </div>
 </div>

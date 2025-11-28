@@ -30,6 +30,9 @@ export class TaskService {
   });
   public singleTask$ = this.singleTaskSubject.asObservable();
 
+  private completedTasksSubjects = new BehaviorSubject<Task[]>([]);
+  public completedTasks$ = this.completedTasksSubjects.asObservable();
+
   private loadingSubjects = new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingSubjects.asObservable();
 
@@ -50,9 +53,10 @@ export class TaskService {
         },
       })
       .pipe(
-        map((taskArray) =>
-          taskArray.map((task) => mapBackendTaskToFrontend(task))
-        )
+        map((taskArray) => {
+          const filteredTasks = taskArray.filter((task) => task.statusId !== 3);
+          return filteredTasks.map((task) => mapBackendTaskToFrontend(task));
+        })
       )
       .subscribe({
         next: (tasks) => {
@@ -178,6 +182,32 @@ export class TaskService {
         },
         error: (err) => {
           console.error(err);
+        },
+      });
+  }
+
+  getInProgressTasks() {
+    this.httpClient.get<TaskResponse>(
+      'http://localhost:5080/api/todo/getInProgressTodos',
+      {
+        headers: {
+          Authorization: `Bearer ${this.authService.getToken()}`,
+        },
+      }
+    );
+  }
+
+  getCompletedTasks() {
+    this.httpClient
+      .get<TaskResponse[]>('http://localhost:5080/api/todo/getCompletedTodos')
+      .pipe(
+        map((taskResponse) => {
+          return taskResponse.map((task) => mapBackendTaskToFrontend(task));
+        })
+      )
+      .subscribe({
+        next: (data) => {
+          this.completedTasksSubjects.next(data);
         },
       });
   }
