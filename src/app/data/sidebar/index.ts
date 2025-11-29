@@ -13,12 +13,12 @@ export const SIDEBAR_ITEMS: SideBarItem[] = [
   //   href: '/dashboard/vital-tasks',
   //   icon: 'mynaDangerSolid',
   // },
-  {
-    id: '3',
-    title: 'My Tasks',
-    href: '/dashboard/my-tasks',
-    icon: 'mynaCalendarCheckSolid',
-  },
+  // {
+  //   id: '3',
+  //   title: 'My Tasks',
+  //   href: '/dashboard/my-tasks',
+  //   icon: 'mynaCalendarCheckSolid',
+  // },
   {
     id: '4',
     title: 'Task Categories',

@@ -63,3 +63,65 @@
 #card-completed-tasks {
   height: 100%;
 }
+
+.add-new-todo-btn {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.94rem;
+  padding: 4px 9px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: 0.3s;
+
+  &:hover {
+    border: 1px solid $primary-color;
+  }
+
+  & .add-new-todo-icon {
+    color: $primary-color;
+  }
+
+  & p {
+    color: $gray-blue;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.modal {
+  width: 60%;
+  min-height: 90vh; //TODO: Make it responsive
+  position: absolute;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 0px;
+  border-radius: 7px;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+.modal-tag {
+  display: block;
+  height: 90vh;
+}
+
+.empty-task-list-div {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .empty-task-list-p {
+    color: $gray-blue;
+  }
+}

@@ -12,17 +12,23 @@
 
 .card-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
   font-size: 1.6rem;
 
-  & > ng-icon {
+  & > div ng-icon {
     color: $gray-blue;
   }
 
-  & > h6 {
+  & > div h6 {
     color: $red;
     font-weight: normal;
+  }
+
+  & .card-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 }
 

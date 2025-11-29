@@ -1,9 +1,17 @@
-import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { ProgressBarComponent } from '../sharable/progress-bar/progress-bar.component';
-import { NgIconConfig, provideIcons } from '@ng-icons/core';
+import { NgIcon, NgIconConfig, provideIcons } from '@ng-icons/core';
 import {
   mynaChartColumnIncreasingSolid,
   mynaCheckCircleOneSolid,
+  mynaPlusSolid,
 } from '@ng-icons/mynaui/solid';
 import { CardComponent } from '../sharable/card/card.component';
 import { AuthService } from '../services/auth.service';
@@ -12,14 +20,16 @@ import { Task } from '../models/task.model';
 import { TaskService } from '../services/task.service';
 import { mynaClipboard } from '@ng-icons/mynaui/outline';
 import { RouterOutlet } from '@angular/router';
+import { NewTaskModalComponent } from './my-tasks/new-task-modal/new-task-modal.component';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
-    RouterOutlet,
     TaskCardComponent,
     ProgressBarComponent,
     CardComponent,
+    NgIcon,
+    NewTaskModalComponent,
   ],
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.scss',
@@ -29,6 +39,7 @@ import { RouterOutlet } from '@angular/router';
       mynaChartColumnIncreasingSolid,
       mynaCheckCircleOneSolid,
       mynaClipboard,
+      mynaPlusSolid,
     }),
   ],
 })
@@ -38,6 +49,9 @@ export class HomepageComponent implements OnInit {
   private authService = inject(AuthService);
   user = this.authService.getCurrentUser();
   private taskService = inject(TaskService);
+
+  isModalOpen = true;
+  @ViewChild('dialog') dialogRef!: ElementRef<HTMLDialogElement>;
 
   ngOnInit(): void {
     this.taskService.getMyTasks();
@@ -56,5 +70,13 @@ export class HomepageComponent implements OnInit {
         console.error(err);
       },
     });
+  }
+
+  openModal(): void {
+    this.dialogRef.nativeElement.showModal();
+  }
+
+  closeModal(): void {
+    this.dialogRef.nativeElement.close();
   }
 }

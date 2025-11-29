@@ -1,7 +1,12 @@
 <div class="card-wrapper" [style]="style">
   <div class="card-header">
-    <ng-icon [name]="icon" />
-    <h6>{{ title }}</h6>
+    <div class="card-header-title">
+      <ng-icon [name]="icon" />
+      <h6>{{ title }}</h6>
+    </div>
+    <div>
+      <ng-content select="card-header" />
+    </div>
   </div>
   <div class="card-body">
     <ng-content />

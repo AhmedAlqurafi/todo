@@ -175,12 +175,14 @@ form {
   & > .textarea-div {
     width: 70%;
   }
+
   & textarea {
     padding: 5px;
     border-radius: 4px;
     border: 1px solid $gray-blue;
     margin-top: 5px;
     resize: none;
+    height: 100%;
 
     &:focus-visible {
       border: 1px solid #000;

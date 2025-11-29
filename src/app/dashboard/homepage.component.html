@@ -1,8 +1,22 @@
+<dialog #dialog class="modal">
+  <app-new-task-modal class="modal-tag" (closeModal)="closeModal()" />
+</dialog>
+
 <h2>Welcome back, {{ user?.firstName }}</h2>
 <div id="dashboard-main-section">
   <app-card title="To-Do" icon="mynaClipboard">
+    <div ngProjectAs="card-header">
+      <button class="add-new-todo-btn" (click)="openModal()">
+        <ng-icon class="add-new-todo-icon" name="mynaPlusSolid" />
+        <p>Add task</p>
+      </button>
+    </div>
     @for(todo of todoTasks; track todo.id) {
     <app-task-card [task]="todo" />
+    } @empty {
+    <div class="empty-task-list-div">
+      <p class="empty-task-list-p">To create a Task, click on the 'Add task'</p>
+    </div>
     }
   </app-card>
   <div id="dashboard-todo-statistics">
@@ -38,6 +52,10 @@
       >
         @for (task of completedTasks; track task.id) {
         <app-task-card [task]="task" />
+        } @empty {
+        <div class="empty-task-list-div">
+          <p class="empty-task-list-p">There aren't any completed tasks!</p>
+        </div>
         }
       </app-card>
     </div>
