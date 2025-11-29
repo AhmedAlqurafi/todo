@@ -19,8 +19,8 @@ import { TaskCardComponent } from '../sharable/task-card/task-card.component';
 import { Task } from '../models/task.model';
 import { TaskService } from '../services/task.service';
 import { mynaClipboard } from '@ng-icons/mynaui/outline';
-import { RouterOutlet } from '@angular/router';
 import { NewTaskModalComponent } from './my-tasks/new-task-modal/new-task-modal.component';
+import { Statistics } from '../models/statistics.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -53,6 +53,8 @@ export class HomepageComponent implements OnInit {
   isModalOpen = true;
   @ViewChild('dialog') dialogRef!: ElementRef<HTMLDialogElement>;
 
+  statistics: Statistics[] | null = null;
+
   ngOnInit(): void {
     this.taskService.getMyTasks();
     this.taskService.tasks$.subscribe({
@@ -65,6 +67,16 @@ export class HomepageComponent implements OnInit {
     this.taskService.completedTasks$.subscribe({
       next: (data) => {
         this.completedTasks = data;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+
+    this.taskService.getStatistics();
+    this.taskService.statistics$.subscribe({
+      next: (data) => {
+        this.statistics = data;
       },
       error: (err) => {
         console.error(err);

@@ -8,6 +8,7 @@ import { TaskRequest } from '../models/taskRequest.model';
 import { NewTask } from '../models/new-task.model';
 import { mapBackendTaskToFrontend } from '../mappings/task';
 import { Task } from '../models/task.model';
+import { Statistics } from '../models/statistics.model';
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +36,9 @@ export class TaskService {
 
   private loadingSubjects = new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingSubjects.asObservable();
+
+  private statisticsSubject = new BehaviorSubject<Statistics[]>([]);
+  public statistics$ = this.statisticsSubject.asObservable();
 
   private readonly getMyTasksURL = 'http://localhost:5080/api/todo/me';
   private readonly taskURL = 'http://localhost:5080/api/todo';
@@ -199,7 +203,11 @@ export class TaskService {
 
   getCompletedTasks() {
     this.httpClient
-      .get<TaskResponse[]>('http://localhost:5080/api/todo/getCompletedTodos')
+      .get<TaskResponse[]>('http://localhost:5080/api/todo/getCompletedTodos', {
+        headers: {
+          Authorization: `Bearer ${this.authService.getToken()}`,
+        },
+      })
       .pipe(
         map((taskResponse) => {
           return taskResponse.map((task) => mapBackendTaskToFrontend(task));
@@ -208,6 +216,24 @@ export class TaskService {
       .subscribe({
         next: (data) => {
           this.completedTasksSubjects.next(data);
+        },
+      });
+  }
+
+  getStatistics() {
+    this.httpClient
+      .get<Statistics[]>('http://localhost:5080/api/todo/getStatistics', {
+        headers: {
+          Authorization: `Bearer ${this.authService.getToken()}`,
+        },
+      })
+      .subscribe({
+        next: (data) => {
+          console.log('Statistics: ', data);
+          this.statisticsSubject.next(data);
+        },
+        error: (err) => {
+          console.error('Error: ', err);
         },
       });
   }
