@@ -1,0 +1,41 @@
+@import "../../../styles/variables";
+
+.toast-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.toast {
+  min-width: 250px;
+  border-radius: 7px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  & p {
+    color: $text-primary-color;
+  }
+}
+
+.toast-icon {
+  font-size: 1.3rem;
+}
+.toast.success {
+  border: 1px solid $green;
+  background-color: $success;
+  color: $green;
+}
+.toast.error {
+  border: 1px solid $red;
+  background-color: $error;
+  color: $red;
+}
+
+.toast.info {
+  border: 1px solid $sea-blue;
+  background-color: $info;
+  color: $sea-blue;
+}

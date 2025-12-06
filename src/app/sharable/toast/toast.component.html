@@ -1,0 +1,19 @@
+<div class="toast-container">
+  @for(toast of toastSubject.toast$ | async; track toast.id){
+  <div class="toast" [ngClass]="toast.type">
+    <!-- <p>{{ toast.message }}</p> -->
+    @if(toast.type === 'success'){
+    <ng-icon
+      name="mynaCheckCircleSolid"
+      [ngClass]="toast.type"
+      class="toast-icon"
+    />
+    } @else if(toast.type === 'error'){
+    <ng-icon name="mynaXCircleSolid" class="toast-icon" />
+    } @else {
+    <ng-icon name="mynaInfoCircleSolid" class="toast-icon" />
+    }
+    <p>Logout Successful</p>
+  </div>
+  }
+</div>

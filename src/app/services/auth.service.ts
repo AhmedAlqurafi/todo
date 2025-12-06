@@ -7,11 +7,13 @@ import { User } from '../models/user.model';
 import { RegisterRequest } from '../models/register.model';
 import { AuthResponse } from '../auth/auth.model';
 import { LoginRequest } from '../models/login.model';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private toastService = inject(ToastService);
   private loginAPI = 'http://localhost:5080/api/auth/login';
   private httpClient = inject(HttpClient);
   private router = inject(Router);
@@ -62,6 +64,7 @@ export class AuthService {
 
         this.tokenSubject.next(response.result.token);
         this.currentUserSubject.next(response.result.user);
+        this.toastService.show('Login is successful', 'success');
         return response;
       })
     );
@@ -72,6 +75,7 @@ export class AuthService {
     localStorage.removeItem('user');
     this.tokenSubject.next('');
     this.currentUserSubject.next(null);
+    this.toastService.show('Logout successful', 'success');
     this.router.navigate(['/']);
   }
 

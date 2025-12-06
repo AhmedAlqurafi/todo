@@ -6,6 +6,7 @@ import { mynaImage } from '@ng-icons/mynaui/outline';
 import { TaskService } from '../../../services/task.service';
 import { TaskRequest } from '../../../models/taskRequest.model';
 import { PRIORITY_NAME_TO_NUMBER } from '../../../mappings/priority';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-new-task-modal',
@@ -17,9 +18,10 @@ import { PRIORITY_NAME_TO_NUMBER } from '../../../mappings/priority';
 export class NewTaskModalComponent {
   @Output() closeModal = new EventEmitter();
   private taskService = inject(TaskService);
+  private toastService = inject(ToastService);
   private uploadedFile: File | null = null;
 
-  minDate = new Date().toISOString().split('T')[0]
+  minDate = new Date().toISOString().split('T')[0];
   categoriesList = [
     {
       id: 1,
@@ -37,14 +39,17 @@ export class NewTaskModalComponent {
   onSubmit(task: NgForm) {
     this.taskService.addTask(task.form.value).subscribe({
       next: () => {
+        this.toastService.show('Task added', 'success');
+        console.log('Toasts: ', this.toastService.toast$);
         this.closeModal.emit();
       },
       error: (err) => {
+        this.toastService.show('Something went wrong', 'error');
         console.error(err);
       },
       complete: () => {
-        task.form.reset() 
-      }
+        task.form.reset();
+      },
     });
   }
 
