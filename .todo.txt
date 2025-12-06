@@ -32,6 +32,9 @@
     F- Display the uploaded image in "Upload Image" field.
     G- Display Completed tasks.  (Completed)
     H- Display statistics. (Completed)
+    I- Sort Todos according to two factors: 
+        1- Categories.
+        2- Date (Ascending - Descending)
 
 3- Category:
     A- Prevent system from creating a category with non existing user Id. (Completed) 
