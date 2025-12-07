@@ -75,21 +75,15 @@
   border-radius: 10px;
   border: 1px solid transparent;
   transition: 0.3s;
+  color: $gray-blue;
 
   &:hover {
     border: 1px solid $primary-color;
+    color: $primary-color;
   }
 
   & .add-new-todo-icon {
     color: $primary-color;
-  }
-
-  & p {
-    color: $gray-blue;
-
-    &:hover {
-      color: $primary-color;
-    }
   }
 }
 

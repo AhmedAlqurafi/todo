@@ -16,9 +16,10 @@ export class ToastService {
     const currentToast = this.toastSubject.value;
     this.toastSubject.next([...currentToast, newToast]);
 
+    const delay = type === 'error' ? 7000 : 3000;
     setTimeout(() => {
       this.remove(id);
-    }, 3000);
+    }, delay);
   }
 
   remove(id: string): void {

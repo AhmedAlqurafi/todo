@@ -7,6 +7,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { AutoFocusDirective } from '../../directives/autofocus.directive';
 import { InputFieldComponent } from '../../sharable/input-field/input-field.component';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -25,6 +26,7 @@ import { InputFieldComponent } from '../../sharable/input-field/input-field.comp
 export class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private toastService = inject(ToastService);
 
   onSubmit(form: NgForm) {
     const user = {
@@ -33,8 +35,12 @@ export class LoginComponent {
     };
 
     this.authService.login(user).subscribe({
-      next: (res) => {
+      next: () => {
+        this.toastService.show('Welcome back!', 'success');
         this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        this.toastService.show(err.error.errorMessages[0], 'error');
       },
     });
   }

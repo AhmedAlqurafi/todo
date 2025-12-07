@@ -12,6 +12,7 @@ import { mynaEnvelope, mynaUser } from '@ng-icons/mynaui/outline';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { AutoFocusDirective } from '../../directives/autofocus.directive';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -43,6 +44,7 @@ export class RegisterComponent {
   confirmPassword = '';
   private authService = inject(AuthService);
   private router = inject(Router);
+  private toastService = inject(ToastService);
 
   onSubmit() {
     const newUser = {
@@ -55,11 +57,13 @@ export class RegisterComponent {
     };
 
     this.authService.register(newUser).subscribe({
-      next: (res) => {
+      next: () => {
+        this.toastService.show('Account creating successfully', 'success');
         this.router.navigate(['/dashboard']);
       },
       error: (error) => {
-        console.error('Registration failed: ', error);
+        console.log(error);
+        this.toastService.show(error.error.errorMessages[0], 'error');
       },
     });
   }

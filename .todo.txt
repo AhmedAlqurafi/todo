@@ -39,3 +39,8 @@
 3- Category:
     A- Prevent system from creating a category with non existing user Id. (Completed) 
     B- Prompt the user when deleting a category to delete todo associated with it.
+
+
+
+o_o Bugs:
+   1- statistics doesn't refresh when a task is added. 

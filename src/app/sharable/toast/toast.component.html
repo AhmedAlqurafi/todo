@@ -1,7 +1,6 @@
 <div class="toast-container">
   @for(toast of toastSubject.toast$ | async; track toast.id){
   <div class="toast" [ngClass]="toast.type">
-    <!-- <p>{{ toast.message }}</p> -->
     @if(toast.type === 'success'){
     <ng-icon
       name="mynaCheckCircleSolid"
@@ -13,7 +12,7 @@
     } @else {
     <ng-icon name="mynaInfoCircleSolid" class="toast-icon" />
     }
-    <p>Logout Successful</p>
+    <p>{{ toast.message }}</p>
   </div>
   }
 </div>

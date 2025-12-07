@@ -4,7 +4,7 @@
 
 <h2>Welcome back, {{ user?.firstName }}</h2>
 <div id="dashboard-main-section">
-  <app-card title="To-Do" icon="mynaClipboard">
+  <app-card [title]="'To-Do'" icon="mynaClipboard">
     <div ngProjectAs="card-header">
       <button class="add-new-todo-btn" (click)="openModal()">
         <ng-icon class="add-new-todo-icon" name="mynaPlusSolid" />
@@ -36,7 +36,7 @@
         </div>
       </div> -->
 
-    <app-card title="Task Status" icon="mynaChartColumnIncreasingSolid">
+    <app-card [title]="'Task Status'" icon="mynaChartColumnIncreasingSolid">
       <div class="dashboard-box-bar-charts">
         <app-progress-bar
           color="green"
@@ -60,7 +60,7 @@
       <app-card
         style="height: 100%"
         icon="mynaCheckCircleOneSolid"
-        title="Completed Tasks"
+        [title]="'Completed Tasks'"
       >
         @for (task of completedTasks; track task.id) {
         <app-task-card [task]="task" />
