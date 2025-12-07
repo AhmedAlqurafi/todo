@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map, Observable, Subscription, tap } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, Subscription, tap, throwError } from 'rxjs';
 import { User } from '../models/user.model';
 import { RegisterRequest } from '../models/register.model';
 import { AuthResponse } from '../auth/auth.model';
@@ -44,13 +44,12 @@ export class AuthService {
   }
 
   register(user: RegisterRequest): Observable<AuthResponse> {
-    return this.httpClient.post<AuthResponse>(this.registerApi, user).pipe(
+     return this.httpClient.post<AuthResponse>(this.registerApi, user).pipe(
       tap((response) => {
-        localStorage.setItem('token', response.result.token);
-        localStorage.setItem('user', JSON.stringify(response.result.user));
-
-        this.tokenSubject.next(response.result.token);
-        this.currentUserSubject.next(response.result.user);
+        this.storeAuthInfo(response)
+      }),catchError(error => {
+        console.error(error)
+        return throwError(() => error)
       })
     );
   }
@@ -58,13 +57,20 @@ export class AuthService {
   login(user: LoginRequest): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(this.loginAPI, user).pipe(
       tap((response) => {
-        localStorage.setItem('token', response.result.token);
-        localStorage.setItem('user', JSON.stringify(response.result.user));
-
-        this.tokenSubject.next(response.result.token);
-        this.currentUserSubject.next(response.result.user);
+        this.storeAuthInfo(response)
+      }),catchError(error => {
+        console.error(error)
+        return throwError(() => error)
       })
     );
+  }
+
+  private storeAuthInfo(authResponse: AuthResponse){
+        localStorage.setItem('token', authResponse.token);
+        localStorage.setItem('user', JSON.stringify(authResponse.user));
+
+        this.tokenSubject.next(authResponse.token);
+        this.currentUserSubject.next(authResponse.user);
   }
 
   logout() {

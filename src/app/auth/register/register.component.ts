@@ -62,8 +62,7 @@ export class RegisterComponent {
         this.router.navigate(['/dashboard']);
       },
       error: (error) => {
-        console.log(error);
-        this.toastService.show(error.error.errorMessages[0], 'error');
+        this.toastService.show(error.error.errorMessages[1], 'error');
       },
     });
   }

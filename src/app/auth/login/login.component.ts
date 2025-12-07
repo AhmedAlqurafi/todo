@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 import { AutoFocusDirective } from '../../directives/autofocus.directive';
 import { InputFieldComponent } from '../../sharable/input-field/input-field.component';
 import { ToastService } from '../../services/toast.service';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,6 @@ import { ToastService } from '../../services/toast.service';
     FormsModule,
     NgIcon,
     AutoFocusDirective,
-    InputFieldComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
