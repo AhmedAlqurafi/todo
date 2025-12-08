@@ -1,3 +1,7 @@
+<dialog #dialog class="modal">
+  <app-edit-task class="modal-tag" (closeModal)="closeModal()" />
+</dialog>
+
 <div class="wrapper">
   <div class="go-back-div">
     <a [routerLink]="['/dashboard']">Go Back</a>

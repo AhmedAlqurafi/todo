@@ -1,0 +1,259 @@
+@import "../../../styles/variables";
+
+#modal-wrapper {
+  min-height: 100%;
+  padding: 40px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+//  HEADER
+#modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  word-wrap: break-word;
+
+  & > div > h2 {
+    font-size: 1.3rem;
+  }
+
+  & button {
+    border: 0px;
+    background-color: transparent;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      text-decoration: underline $dark-orange;
+    }
+  }
+
+  & #title-underline {
+    width: 75%;
+    min-height: 2px;
+    background-color: $dark-orange;
+  }
+}
+
+// MAIN
+form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+}
+
+#modal-main {
+  margin: 30px 0;
+  padding: 15px;
+  border: 1px solid $gray-blue;
+  border-radius: 2px;
+  flex-grow: 1;
+}
+
+#dueDate-section {
+  width: 100%;
+  margin-top: 15px;
+}
+.input-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-div:nth-child(2) label {
+  margin-top: 15px;
+}
+
+.input-div input {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid $gray-blue;
+  margin-top: 5px;
+
+  &:focus-visible {
+    border: 1px solid #000;
+    outline: 0;
+  }
+}
+
+#priority-section {
+  margin-top: 15px;
+}
+
+#priority {
+  display: flex;
+  margin-top: 5px;
+  gap: 40px;
+  color: $gray-blue;
+
+  & #high {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: $red;
+    }
+
+    &:checked + label {
+      color: $red;
+    }
+  }
+
+  & #medium {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: $bright-orange;
+    }
+
+    &:checked + label {
+      color: $bright-orange;
+    }
+  }
+
+  & #low {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: $sea-blue;
+    }
+
+    &:checked + label {
+      color: $sea-blue;
+    }
+  }
+}
+
+#dueDate-category-section {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+#category-section {
+  margin-top: 15px;
+  width: 100%;
+
+  & select {
+    display: block;
+    margin-top: 5px;
+    padding: 5px;
+    padding-bottom: 6px;
+    width: 100%;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+
+    &:focus-visible {
+      border: 1px solid #000;
+      outline: 0;
+    }
+  }
+}
+
+#img-desc-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  gap: 20px;
+
+  & > .textarea-div {
+    width: 70%;
+  }
+
+  & textarea {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid $gray-blue;
+    margin-top: 5px;
+    resize: none;
+    height: 100%;
+
+    &:focus-visible {
+      border: 1px solid #000;
+      outline: 0;
+    }
+  }
+  & > div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+#upload-image-container {
+  width: 30%;
+}
+#upload-image {
+  padding: 25px 5px;
+  border-radius: 4px;
+  margin-top: 5px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid $gray-blue;
+  border-radius: 7px;
+
+  & .upload-image-icon {
+    font-size: 40px;
+    color: $gray-blue;
+  }
+
+  & .upload-image-input {
+    display: none;
+  }
+
+  & p {
+    color: $gray-blue;
+  }
+
+  & .upload-image-btn {
+    padding: 3px 12px;
+    border-radius: 4px;
+    border: 1px solid $gray-blue;
+    color: $gray-blue;
+    background-color: transparent;
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
+}
+
+// FOOTER
+#modal-footer {
+  padding: 0 30px;
+
+  & button {
+    background-color: $dark-orange;
+    border: 1px solid $dark-orange;
+    padding: 5px 20px;
+    font-size: 1.1rem;
+    color: white;
+    border-radius: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: white;
+      color: $dark-orange;
+    }
+  }
+}
+#priority-choices {
+  display: flex;
+  gap: 20px;
+}

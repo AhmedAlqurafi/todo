@@ -1,4 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  model,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task.model';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -11,10 +18,11 @@ import {
   mynaTrashOneSolid,
 } from '@ng-icons/mynaui/solid';
 import { STATUS_NUMBER_TO_NAME } from '../../mappings/status';
+import { EditTaskComponent } from '../edit-task/edit-task.component';
 
 @Component({
   selector: 'app-single-task',
-  imports: [RouterLink, IconButtonComponent],
+  imports: [RouterLink, IconButtonComponent, EditTaskComponent],
   templateUrl: './single-task.component.html',
   styleUrl: './single-task.component.scss',
   viewProviders: [
@@ -30,6 +38,10 @@ export class SingleTaskComponent implements OnInit {
   private taskService = inject(TaskService);
   private activeRoute = inject(ActivatedRoute);
   private router = inject(Router);
+
+  isModalOpen = true;
+  @ViewChild('dialog') dialogRef!: ElementRef<HTMLDialogElement>;
+
   priorityStyle!: string;
   statusStyle!: string;
   circularDiv!: string;
@@ -93,7 +105,7 @@ export class SingleTaskComponent implements OnInit {
   }
 
   handleEditTask() {
-    console.log('Edit task');
+    this.openModal();
   }
   handleDeleteTask(taskId: number) {
     const res = this.taskService.deleteTask(taskId);
@@ -126,5 +138,13 @@ export class SingleTaskComponent implements OnInit {
         console.error(err);
       },
     });
+  }
+
+  openModal(): void {
+    this.dialogRef.nativeElement.showModal();
+  }
+
+  closeModal(): void {
+    this.dialogRef.nativeElement.close();
   }
 }
