@@ -10,7 +10,7 @@
     <div id="modal-main">
       <div class="input-div">
         <label>Title</label>
-        <input required name="title" ngModel placeholder="Enter Task Title" />
+        <input required id="title" name="title" ngModel placeholder="Enter Task Title"/>
       </div>
 
       <div id="dueDate-category-section">
@@ -23,6 +23,7 @@
               name="dueDate"
               ngModel
               min="{{ minDate }}"
+              
             />
           </div>
         </div>
@@ -50,6 +51,7 @@
               name="priority"
               value="High"
               ngModel
+              [checked]="task?.priority == 'High'"
             />
             <label for="high">High</label>
           </div>
@@ -61,12 +63,16 @@
               name="priority"
               value="Medium"
               ngModel
+              [checked]="task?.priority == 'Medium'"
             />
             <label for="medium">Medium</label>
           </div>
 
           <div id="low">
-            <input type="radio" id="low" name="priority" value="Low" ngModel />
+            <input type="radio" id="low" name="priority" value="Low" ngModel
+            
+              [checked]="task?.priority == 'Low'"
+            />
             <label for="low">Low</label>
           </div>
         </div>

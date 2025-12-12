@@ -66,11 +66,11 @@ export class AuthService {
   }
 
   private storeAuthInfo(authResponse: AuthResponse){
-        localStorage.setItem('token', authResponse.token);
-        localStorage.setItem('user', JSON.stringify(authResponse.user));
+        localStorage.setItem('token', authResponse.result.token);
+        localStorage.setItem('user', JSON.stringify(authResponse.result.user));
 
-        this.tokenSubject.next(authResponse.token);
-        this.currentUserSubject.next(authResponse.user);
+        this.tokenSubject.next(authResponse.result.token);
+        this.currentUserSubject.next(authResponse.result.user);
   }
 
   logout() {

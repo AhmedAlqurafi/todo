@@ -9,6 +9,7 @@ import { NewTask } from '../models/new-task.model';
 import { mapBackendTaskToFrontend } from '../mappings/task';
 import { Task } from '../models/task.model';
 import { Statistics } from '../models/statistics.model';
+import { EditTask } from '../models/editted-task.model';
 
 @Injectable({
   providedIn: 'root',
@@ -122,6 +123,9 @@ export class TaskService {
       );
   }
 
+editTask(task: EditTask): void {
+    console.log("Task: ", task)
+  }
   deleteTask(taskId: number): boolean {
     this.httpClient
       .delete(`http://localhost:5080/api/todo/${taskId}`, {
