@@ -49,7 +49,8 @@
     <app-icon-button
       iconName="mynaCheckCircleSolid"
       (onClick)="handleChangeStatusToCompleted(task!.id)"
-      tooltip="Change status to Completed"
+      [tooltip]="task?.status === 3 ? 'Task is already completed' : 'Change status to Completed'"
+      [disabled]="task?.status === 3"
     />
     }
   </div>

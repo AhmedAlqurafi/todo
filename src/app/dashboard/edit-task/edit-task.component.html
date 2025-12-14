@@ -55,7 +55,7 @@
               id="high"
               name="priority"
               value="High"
-              ngModel
+              [(ngModel)]="task!.priority"
               [checked]="task?.priority == 'High'"
             />
             <label for="high">High</label>
@@ -67,7 +67,7 @@
               id="medium"
               name="priority"
               value="Medium"
-              ngModel
+              [(ngModel)]="task!.priority"
               [checked]="task?.priority == 'Medium'"
             />
             <label for="medium">Medium</label>
@@ -79,7 +79,7 @@
               id="low"
               name="priority"
               value="Low"
-              ngModel
+              [(ngModel)]="task!.priority"
               [checked]="task?.priority == 'Low'"
             />
             <label for="low">Low</label>

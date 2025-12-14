@@ -19,6 +19,7 @@ import {
 } from '@ng-icons/mynaui/solid';
 import { STATUS_NUMBER_TO_NAME } from '../../mappings/status';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-single-task',
@@ -36,6 +37,7 @@ import { EditTaskComponent } from '../edit-task/edit-task.component';
 })
 export class SingleTaskComponent implements OnInit {
   private taskService = inject(TaskService);
+  private toastSerivce = inject(ToastService)
   private activeRoute = inject(ActivatedRoute);
   private router = inject(Router);
 
@@ -88,16 +90,6 @@ export class SingleTaskComponent implements OnInit {
         console.error(err);
       },
     });
-    // this.taskService.getTaskById(taskId).subscribe({
-    //   next: (res) => {
-    //     console.log('Task fetched: ', res);
-    //     this.task = res;
-
-    //   },
-    //   error: (err) => {
-    //     console.error('Error fetching task: ', err);
-    //   },
-    // });
   }
 
   taskStatusLabel(statusId: number | undefined): string | undefined {
@@ -105,6 +97,9 @@ export class SingleTaskComponent implements OnInit {
   }
 
   handleEditTask() {
+    if(this.task?.status === 3) {
+      this.toastSerivce.show('Cannot edit a completed task', 'info')
+      return}
     this.openModal();
   }
   handleDeleteTask(taskId: number) {
@@ -129,6 +124,11 @@ export class SingleTaskComponent implements OnInit {
   }
 
   handleChangeStatusToCompleted(taskId: number) {
+    console.log(this.task)
+    if(this.task?.status === 3) {
+      this.toastSerivce.show("Cannot complete an already completed task", 'info')
+      return 
+    }
     this.taskService.changeStatusToCompleted(taskId);
     this.taskService.singleTask$.subscribe({
       next: (data) => {

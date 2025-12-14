@@ -10,6 +10,7 @@ import { mapBackendTaskToFrontend } from '../mappings/task';
 import { Task } from '../models/task.model';
 import { Statistics } from '../models/statistics.model';
 import { EditTask } from '../models/editted-task.model';
+import { PutTaskRequest } from '../models/put-task-request';
 
 @Injectable({
   providedIn: 'root',
@@ -80,13 +81,6 @@ export class TaskService {
           Authorization: `Bearer ${this.authService.getToken()}`,
         },
       })
-      // .pipe(
-      //   map((taskResponse) => {
-      //     const task: Task = mapBackendTaskToFrontend(taskResponse);
-      //     console.log("taskResponse")
-      //     return task;
-      //   })
-      // )
       .subscribe({
         next: (data) => {
           const task: Task = mapBackendTaskToFrontend(data);
@@ -123,15 +117,17 @@ export class TaskService {
       );
   }
 
-  editTask(task: EditTask, taskId: number): Observable<object> {
-    const editTask: TaskRequest = {
+  putTask(task: EditTask, taskId: number): Observable<object> {
+    const editTask: PutTaskRequest= {
       Title: task.title,
       Details: task.taskDesc,
       CategoryId: task.category,
       PriorityId: PRIORITY_NAME_TO_NUMBER.get(task.priority),
+      StatusId: task.status,
       Deadline: task.dueDate,
       ImageURL: 'http://test.com',
     };
+
     return this.httpClient.put<EditTask>(
       `http://localhost:5080/api/todo/${taskId}`,
       editTask,
@@ -142,6 +138,7 @@ export class TaskService {
       }
     );
   }
+
   deleteTask(taskId: number): boolean {
     this.httpClient
       .delete(`http://localhost:5080/api/todo/${taskId}`, {
@@ -249,7 +246,6 @@ export class TaskService {
       })
       .subscribe({
         next: (data) => {
-          console.log('Statistics: ', data);
           this.statisticsSubject.next(data);
         },
         error: (err) => {

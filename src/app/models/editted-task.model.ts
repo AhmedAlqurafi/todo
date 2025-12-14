@@ -4,5 +4,6 @@ export interface EditTask{
   category: number;
   priority: string;
   imageURL: string;
+status: number;
   dueDate: Date;
 }

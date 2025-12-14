@@ -36,6 +36,10 @@ body {
   background-color: $primary-color-hover;
 }
 
+.button-icon-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 html,
 body {
   height: 100%;

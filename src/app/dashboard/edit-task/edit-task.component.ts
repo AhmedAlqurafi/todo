@@ -8,6 +8,7 @@ import { Task } from '../../models/task.model';
 import { Title } from '@angular/platform-browser';
 import { NgFor } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { EditTask } from '../../models/editted-task.model';
 
 @Component({
   selector: 'app-edit-task',
@@ -53,8 +54,6 @@ export class EditTaskComponent implements OnInit {
         const day = ('0' + task.dueDate.getDate()).slice(-2);
         this.date = `${year}-${month}-${day}`;
 
-        console.log('Task: ', task);
-        console.log('Date: ', this.date);
       },
       error: (error) => {
         console.error('Erorr: ', error);
@@ -63,26 +62,22 @@ export class EditTaskComponent implements OnInit {
   }
 
   onSubmit(task: NgForm) {
-    console.log('Edit task: ', task.form.value);
     const taskId = parseInt(
       this.activatedRoute.snapshot.paramMap.get('taskId')!
     );
-    console.log('Task Id: ', taskId);
 
-    const edittedTask = {
+    const edittedTask: EditTask = {
       title: task.form.value.title,
       taskDesc: task.form.value.taskDesc,
       category: task.form.value.category,
       priority: task.form.value.priority,
+      status: this.task!.status,
       imageURL: 'Testing',
       dueDate: task.form.value.dueDate,
     };
 
-    this.taskService.editTask(edittedTask, taskId).subscribe({
+    this.taskService.putTask(edittedTask, taskId).subscribe({
       next: (res) => {
-        console.log('result: ', res);
-        console.log('submitted task: ', edittedTask);
-
         this.toastService.show('Task editted successfully', 'success');
         this.closeModal.emit();
       },
@@ -91,24 +86,6 @@ export class EditTaskComponent implements OnInit {
         this.toastService.show('Edit task is failed', 'error');
       },
     });
-    // this.taskService.editTask(task)
-    // this.taskService.addTask(task.form.value).subscribe({
-    //   next: () => {
-    //     this.toastService.show('Task added', 'success');
-    //     this.toastService.toast$.subscribe({
-    //       next: (taosts) => console.log('Toasts: ', taosts),
-    //     });
-
-    //     this.closeModal.emit();
-    //   },
-    //   error: (err) => {
-    //     this.toastService.show('Something went wrong', 'error');
-    //     console.error(err);
-    //   },
-    //   complete: () => {
-    //     task.form.reset();
-    //   },
-    // });
   }
 
   onFileSelected(event: any) {

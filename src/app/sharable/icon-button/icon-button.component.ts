@@ -18,6 +18,7 @@ import { IconType, NgIcon } from '@ng-icons/core';
 export class IconButtonComponent {
   @Input({ required: true }) iconName: IconType | undefined;
   @Input({ required: false }) tooltip: string = '';
+  @Input({required: false}) disabled: boolean = false
   @Output() onClick = new EventEmitter();
 
   handleOnClick(event: Event) {
