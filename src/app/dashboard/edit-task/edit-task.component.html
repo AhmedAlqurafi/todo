@@ -1,16 +1,22 @@
 <div id="modal-wrapper">
   <div id="modal-header">
     <div>
-      <h2>Add New Task</h2>
+      <h2>Edit Task</h2>
       <div id="title-underline"></div>
     </div>
     <button (click)="handleCloseModal()">Go Back</button>
   </div>
-  <form #newTask="ngForm" (ngSubmit)="onSubmit(newTask)">
+  <form #editTask="ngForm" (ngSubmit)="onSubmit(editTask)">
     <div id="modal-main">
       <div class="input-div">
         <label>Title</label>
-        <input required id="title" name="title" ngModel placeholder="Enter Task Title"/>
+        <input
+          required
+          id="title"
+          name="title"
+          [(ngModel)]="task!.title"
+          placeholder="Enter Task Title"
+        />
       </div>
 
       <div id="dueDate-category-section">
@@ -21,9 +27,8 @@
               type="date"
               required
               name="dueDate"
-              ngModel
+              [(ngModel)]="date"
               min="{{ minDate }}"
-              
             />
           </div>
         </div>
@@ -69,8 +74,12 @@
           </div>
 
           <div id="low">
-            <input type="radio" id="low" name="priority" value="Low" ngModel
-            
+            <input
+              type="radio"
+              id="low"
+              name="priority"
+              value="Low"
+              ngModel
               [checked]="task?.priority == 'Low'"
             />
             <label for="low">Low</label>
@@ -83,7 +92,7 @@
           <label>Task Description</label>
           <textarea
             name="taskDesc"
-            ngModel
+            [(ngModel)]="task!.taskDesc"
             cols="40"
             rows="10"
             placeholder="Enter Task Description"

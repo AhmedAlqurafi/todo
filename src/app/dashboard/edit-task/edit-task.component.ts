@@ -6,21 +6,25 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { mynaImage } from '@ng-icons/mynaui/outline';
 import { Task } from '../../models/task.model';
 import { Title } from '@angular/platform-browser';
+import { NgFor } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-task',
-  imports: [NgIcon, FormsModule],
+  imports: [NgIcon, FormsModule, NgFor],
   templateUrl: './edit-task.component.html',
   styleUrl: './edit-task.component.scss',
   viewProviders: [provideIcons({ mynaImage })],
 })
-export class EditTaskComponent implements OnInit{
+export class EditTaskComponent implements OnInit {
   @Output() closeModal = new EventEmitter();
   private taskService = inject(TaskService);
   private toastService = inject(ToastService);
   private uploadedFile: File | null = null;
-title: string = ''  
-  task: Task | null = null
+  private activatedRoute = inject(ActivatedRoute);
+
+  task: Task | null = null;
+  date: string = '';
   minDate = new Date().toISOString().split('T')[0];
   categoriesList = [
     {
@@ -32,22 +36,61 @@ title: string = ''
       categoryName: 'Shopping',
     },
   ];
-new: any;
+  new: any;
+
   handleCloseModal() {
     this.closeModal.emit();
   }
 
+  ngOnInit(): void {
+    this.taskService.singleTask$.subscribe({
+      next: (task) => {
+        this.task = task;
+        // Create the YYYY-MM-DD string manually using Local Time methods
+        const year = task.dueDate.getFullYear();
+        // Month is 0-indexed (0 = Jan), so we add 1. We also pad with '0' if needed.
+        const month = ('0' + (task.dueDate.getMonth() + 1)).slice(-2);
+        const day = ('0' + task.dueDate.getDate()).slice(-2);
+        this.date = `${year}-${month}-${day}`;
+
+        console.log('Task: ', task);
+        console.log('Date: ', this.date);
+      },
+      error: (error) => {
+        console.error('Erorr: ', error);
+      },
+    });
+  }
+
   onSubmit(task: NgForm) {
-    console.log("Edit task: ", task.form.value)
+    console.log('Edit task: ', task.form.value);
+    const taskId = parseInt(
+      this.activatedRoute.snapshot.paramMap.get('taskId')!
+    );
+    console.log('Task Id: ', taskId);
+
     const edittedTask = {
       title: task.form.value.title,
       taskDesc: task.form.value.taskDesc,
-category: task.form.value.category,
-  priority: task.form.value.priority,
-  // imageURL: string;
-  // dueDate: Date;
+      category: task.form.value.category,
+      priority: task.form.value.priority,
+      imageURL: 'Testing',
+      dueDate: task.form.value.dueDate,
+    };
 
-    }
+    this.taskService.editTask(edittedTask, taskId).subscribe({
+      next: (res) => {
+        console.log('result: ', res);
+        console.log('submitted task: ', edittedTask);
+
+        this.toastService.show('Task editted successfully', 'success');
+        this.closeModal.emit();
+      },
+      error: (error) => {
+        console.error('Edit Error: ', error);
+        this.toastService.show('Edit task is failed', 'error');
+      },
+    });
     // this.taskService.editTask(task)
     // this.taskService.addTask(task.form.value).subscribe({
     //   next: () => {
@@ -68,19 +111,6 @@ category: task.form.value.category,
     // });
   }
 
-ngOnInit(): void {
-    this.taskService.singleTask$.subscribe({
-      next: (task) => {
-        this.task = task
-
-        console.log("Task: ", task)
-      }, error: (error) => {
-        console.error("Erorr: ", error)
-      }
-    })
-
-
-}
   onFileSelected(event: any) {
     const file: File = event.target?.files[0];
 

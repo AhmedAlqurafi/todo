@@ -123,8 +123,24 @@ export class TaskService {
       );
   }
 
-editTask(task: EditTask): void {
-    console.log("Task: ", task)
+  editTask(task: EditTask, taskId: number): Observable<object> {
+    const editTask: TaskRequest = {
+      Title: task.title,
+      Details: task.taskDesc,
+      CategoryId: task.category,
+      PriorityId: PRIORITY_NAME_TO_NUMBER.get(task.priority),
+      Deadline: task.dueDate,
+      ImageURL: 'http://test.com',
+    };
+    return this.httpClient.put<EditTask>(
+      `http://localhost:5080/api/todo/${taskId}`,
+      editTask,
+      {
+        headers: {
+          Authorization: `Bearer ${this.authService.getToken()}`,
+        },
+      }
+    );
   }
   deleteTask(taskId: number): boolean {
     this.httpClient
