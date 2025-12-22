@@ -22,10 +22,11 @@
     K- Fix ID auto increment in Backend
     L- Sanitize inputs. (Such as firstName, lastName, username etc...)
     M- Apply Rate Limit to register and login endpoints.
+    O- Use Cookies instead localstorage.
 
 2- Todo:
     A- Create Todo. (Completed)
-    B- Edit Todo.
+    B- Edit Todo.   (Completed)
     C- Delete Todo. (Completed)
     D- Get Todos.   (Completed)
     E- Error handling.
@@ -35,10 +36,13 @@
     I- Sort Todos according to two factors: 
         1- Categories.
         2- Date (Ascending - Descending)
+    J- Add submenu on Task Card. (Completed)
+
 
 3- Category:
     A- Prevent system from creating a category with non existing user Id. (Completed) 
     B- Prompt the user when deleting a category to delete todo associated with it.
+    C- 
 
 
 

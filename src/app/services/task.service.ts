@@ -153,7 +153,10 @@ export class TaskService {
         error: (err) => {
           console.error('Error occured: ', err);
           return false;
-        },
+        }, complete: () => {
+          this.getMyTasks()
+          this.getCompletedTasks()
+        }
       });
     return true;
   }

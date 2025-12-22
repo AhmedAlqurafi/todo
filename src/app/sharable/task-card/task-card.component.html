@@ -40,13 +40,24 @@
       >
     </div>
   </div>
-  <div class="three-dots-wrapper">
+  <div class="submenu-container">
+  <div class="three-dots-wrapper" (click)="toggleSubmenu()">
     <div class="dot"></div>
     <div class="dot"></div>
     <div class="dot"></div>
+    @if(isSubmenuOpen()){
+    <div class="submenu">
+      <ul>
+        <li (click)="handleDeleteTask(task.id)">Delete</li>
+      </ul> 
+    </div>
+  }
   </div>
 </div>
 
+
+
+</div>
 <!-- <a  class="task-card-wrapper" [routerLink]="['/dashboard', 'my-tasks', task.id]">
       <div class="task-circular-progress">
     <div class="circle-div" [class]="circularDiv"></div>

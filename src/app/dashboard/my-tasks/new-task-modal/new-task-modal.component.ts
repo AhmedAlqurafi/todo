@@ -40,10 +40,7 @@ export class NewTaskModalComponent {
     this.taskService.addTask(task.form.value).subscribe({
       next: () => {
         this.toastService.show('Task added', 'success');
-        this.toastService.toast$.subscribe({
-          next: (taosts) => console.log('Toasts: ', taosts),
-        });
-
+        this.toastService.toast$
         this.closeModal.emit();
       },
       error: (err) => {

@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { Task } from '../../models/task.model';
 import { RouterLink } from '@angular/router';
 import { STATUS_NUMBER_TO_NAME } from '../../mappings/status';
+import { TaskService } from '../../services/task.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-task-card',
@@ -12,9 +14,12 @@ import { STATUS_NUMBER_TO_NAME } from '../../mappings/status';
 })
 export class TaskCardComponent {
   @Input({ required: true }) task!: Task;
+  private taskService = inject(TaskService)
+  private toastService = inject(ToastService)
   priorityStyle!: string;
   statusStyle!: string;
   circularDiv!: string;
+  isSubmenuOpen = signal(false)
 
   ngOnInit() {
     this.priorityStyle =
@@ -41,5 +46,22 @@ export class TaskCardComponent {
 
   get taskStatusLabel(): string | undefined {
     return STATUS_NUMBER_TO_NAME.get(this.task.status);
+  }
+
+ 
+  toggleSubmenu() {
+    this.isSubmenuOpen.update(prev => !prev)
+    console.log("Clicked")
+  }
+
+ handleDeleteTask(taskId: number) {
+    const res = this.taskService.deleteTask(taskId);
+    if (res) {
+      this.toastService.show("Task deleted successfully", 'success')
+      this.taskService.getMyTasks()
+      // this.router.navigateByUrl('/dashboard');
+    } else {
+      console.error('Error occured');
+    }
   }
 }

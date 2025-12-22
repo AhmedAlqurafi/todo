@@ -124,7 +124,6 @@ export class SingleTaskComponent implements OnInit {
   }
 
   handleChangeStatusToCompleted(taskId: number) {
-    console.log(this.task)
     if(this.task?.status === 3) {
       this.toastSerivce.show("Cannot complete an already completed task", 'info')
       return 
